@@ -43,7 +43,7 @@ a{color:var(--accent)}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
 h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.2;margin:0}
 .m{font-family:var(--f-math);font-size:1.08em;white-space:nowrap}
-.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:.88em;line-height:1.15;margin:0 .08em}
+.frac{display:inline-flex;flex-direction:column;align-items:stretch;text-align:center;vertical-align:middle;font-size:.88em;line-height:1.15;margin:0 .08em}
 .frac>span{padding:0 .18em}
 .frac>span+span{border-top:1.5px solid currentColor}
 .hand{font-family:var(--f-hand);color:var(--margin);font-size:1.3em;line-height:1}
@@ -55,6 +55,7 @@ header.top .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify
 .brand{display:flex;align-items:baseline;gap:8px;text-decoration:none;color:var(--ink)}
 .brand b{font-family:var(--f-display);font-size:1.3rem}
 .brand span{font-family:var(--f-hand);color:var(--margin);font-size:1.35rem}
+nav.top{display:flex;flex-wrap:wrap;gap:4px;min-width:0}
 nav.top a{text-decoration:none;color:var(--ink-soft);font-weight:700;padding:6px 10px;border-radius:8px}
 nav.top a[aria-current="page"],nav.top a:hover{color:var(--accent);background:var(--accent-soft)}
 
