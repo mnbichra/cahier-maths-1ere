@@ -43,6 +43,7 @@ a{color:var(--accent)}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
 h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.2;margin:0}
 .m{font-family:var(--f-math);font-size:1.08em;white-space:nowrap}
+.m sub,.formula sub,table.tab sub,.opts sub{font-size:.7em;line-height:0}
 .frac{display:inline-flex;flex-direction:column;align-items:stretch;text-align:center;vertical-align:middle;font-size:.88em;line-height:1.15;margin:0 .08em}
 .frac>span{padding:0 .18em}
 .frac>span+span{border-top:1.5px solid currentColor}
@@ -224,12 +225,12 @@ const COURS = [
   <div class="trap"><b>Piège classique</b>Toujours développer avant de conclure : <span class="m">2x(x−1) − 2x² + 5 = −2x + 5</span> n'est pas du second degré.</div>`},
  {id:"racines", t:"Racines, forme factorisée, somme et produit", h:`
   <p>Les <b>racines</b> de f sont les solutions de <span class="m">f(x) = 0</span>.</p>
-  <div class="prop"><b>Forme factorisée</b>Si f a deux racines <span class="m">x₁</span> et <span class="m">x₂</span> :<div class="formula">f(x) = a(x − x₁)(x − x₂)</div></div>
-  <div class="prop"><b>Somme et produit</b><div class="formula">S = x₁ + x₂ = −<span class=frac><span>b</span><span>a</span></span> &nbsp;&nbsp;&nbsp; P = x₁ × x₂ = <span class=frac><span>c</span><span>a</span></span></div></div>
-  <div class="meth"><b>Méthode</b>Retrouver f à partir de ses racines et d'un point : écrire <span class="m">a(x − x₁)(x − x₂)</span>, puis calculer a avec le point donné (souvent <span class="m">f(0)</span>).</div>`},
+  <div class="prop"><b>Forme factorisée</b>Si f a deux racines <span class="m">x<sub>1</sub></span> et <span class="m">x<sub>2</sub></span> :<div class="formula">f(x) = a(x − x<sub>1</sub>)(x − x<sub>2</sub>)</div></div>
+  <div class="prop"><b>Somme et produit</b><div class="formula">S = x<sub>1</sub> + x<sub>2</sub> = −<span class=frac><span>b</span><span>a</span></span> &nbsp;&nbsp;&nbsp; P = x<sub>1</sub> × x<sub>2</sub> = <span class=frac><span>c</span><span>a</span></span></div></div>
+  <div class="meth"><b>Méthode</b>Retrouver f à partir de ses racines et d'un point : écrire <span class="m">a(x − x<sub>1</sub>)(x − x<sub>2</sub>)</span>, puis calculer a avec le point donné (souvent <span class="m">f(0)</span>).</div>`},
  {id:"signe", t:"Signe d'un trinôme", h:`
   <div class="prop"><b>Propriété</b>f(x) est du <b>signe de a à l'extérieur des racines</b> et du <b>signe de −a entre les racines</b>.</div>
-  <div class="scroll"><table class="tab"><tr><th>x</th><td>−∞</td><td></td><td>x₁</td><td></td><td>x₂</td><td></td><td>+∞</td></tr>
+  <div class="scroll"><table class="tab"><tr><th>x</th><td>−∞</td><td></td><td>x<sub>1</sub></td><td></td><td>x<sub>2</sub></td><td></td><td>+∞</td></tr>
   <tr><th>a &gt; 0</th><td></td><td>+</td><td>0</td><td>−</td><td>0</td><td>+</td><td></td></tr>
   <tr><th>a &lt; 0</th><td></td><td>−</td><td>0</td><td>+</td><td>0</td><td>−</td><td></td></tr></table></div>
   <div class="meth"><b>Méthode — inéquation</b>1. Tout passer d'un côté (… ≥ 0). 2. Factoriser. 3. Tableau de signe. 4. Lire S (crochets fermés si ≥ ou ≤).</div>`},
@@ -241,20 +242,20 @@ const COURS = [
   <tr><th>a &lt; 0</th><td></td><td>↗</td><td>β max</td><td>↘</td><td></td></tr></table></div>`},
  {id:"delta", t:"Le discriminant Δ", h:`
   <div class="prop"><b>Théorème</b><div class="formula">Δ = b² − 4ac</div>
-  • <b>Δ &gt; 0</b> : deux racines <span class="m">x₁ = <span class=frac><span>−b − √Δ</span><span>2a</span></span></span> et <span class="m">x₂ = <span class=frac><span>−b + √Δ</span><span>2a</span></span></span>.<br>
-  • <b>Δ = 0</b> : une racine double <span class="m">x₀ = −<span class=frac><span>b</span><span>2a</span></span></span> et <span class="m">f(x) = a(x − x₀)²</span>.<br>
+  • <b>Δ &gt; 0</b> : deux racines <span class="m">x<sub>1</sub> = <span class=frac><span>−b − √Δ</span><span>2a</span></span></span> et <span class="m">x<sub>2</sub> = <span class=frac><span>−b + √Δ</span><span>2a</span></span></span>.<br>
+  • <b>Δ = 0</b> : une racine double <span class="m">x<sub>0</sub> = −<span class=frac><span>b</span><span>2a</span></span></span> et <span class="m">f(x) = a(x − x<sub>0</sub>)²</span>.<br>
   • <b>Δ &lt; 0</b> : aucune racine, f(x) a le signe de a partout.</div>
   <div class="scroll"><table class="grid"><tr><th></th><th>Δ &gt; 0</th><th>Δ = 0</th><th>Δ &lt; 0</th></tr>
   <tr><th>Racines</th><td>2 racines</td><td>1 racine double</td><td>aucune</td></tr>
-  <tr><th>Forme factorisée</th><td>a(x − x₁)(x − x₂)</td><td>a(x − x₀)²</td><td>impossible</td></tr>
-  <tr><th>Signe de f(x)</th><td>a dehors, −a entre</td><td>signe de a, nul en x₀</td><td>signe de a partout</td></tr></table></div>
+  <tr><th>Forme factorisée</th><td>a(x − x<sub>1</sub>)(x − x<sub>2</sub>)</td><td>a(x − x<sub>0</sub>)²</td><td>impossible</td></tr>
+  <tr><th>Signe de f(x)</th><td>a dehors, −a entre</td><td>signe de a, nul en x<sub>0</sub></td><td>signe de a partout</td></tr></table></div>
   <div class="ex"><b>Exemple</b><span class="m">3x² − 6x − 105</span> : Δ = 36 + 1260 = 1296 = 36², racines −5 et 7, donc <span class="m">f(x) = 3(x + 5)(x − 7)</span>.</div>
   <div class="trap"><b>Piège classique</b>Le signe de a ! Pour <span class="m">−x² + 3x − 2</span>, a = −1 : Δ = 9 − 8 = 1 (et non 17).</div>`},
  {id:"astuces", t:"Astuces et choix de la forme", h:`
-  <div class="meth"><b>Avant de calculer Δ</b>Identité remarquable • facteur commun (<span class="m">x² − 3x = x(x − 3)</span>) • racine évidente (tester 1, −1, 2) puis <span class="m">x₂ = (<span class=frac><span>c</span><span>a</span></span>) ÷ x₁</span> • <span class=frac><span>somme</span><span>produit</span></span>.</div>
+  <div class="meth"><b>Avant de calculer Δ</b>Identité remarquable • facteur commun (<span class="m">x² − 3x = x(x − 3)</span>) • racine évidente (tester 1, −1, 2) puis <span class="m">x<sub>2</sub> = (<span class=frac><span>c</span><span>a</span></span>) ÷ x<sub>1</sub></span> • <span class=frac><span>somme</span><span>produit</span></span>.</div>
   <div class="scroll"><table class="grid"><tr><th>Forme</th><th>Sert à…</th></tr>
   <tr><td>Développée <span class="m">ax² + bx + c</span></td><td>calculer f(0), résoudre f(x) = c</td></tr>
-  <tr><td>Factorisée <span class="m">a(x − x₁)(x − x₂)</span></td><td>racines, signe, inéquations</td></tr>
+  <tr><td>Factorisée <span class="m">a(x − x<sub>1</sub>)(x − x<sub>2</sub>)</span></td><td>racines, signe, inéquations</td></tr>
   <tr><td>Canonique <span class="m">a(x − α)² + β</span></td><td>sommet, extremum, variations, f(x) = β + …</td></tr></table></div>`},
  {id:"equations", t:"Équations qui se ramènent au second degré", h:`
   <div class="meth"><b>Équation bicarrée</b><span class="m">ax⁴ + bx² + c = 0</span> : poser <span class="m">X = x²</span> avec <b>X ≥ 0</b>, rejeter les X négatifs, puis <span class="m">x = ±√X</span>.</div>
@@ -265,8 +266,8 @@ const COURS = [
 ];
 
 const EXPRESS = [
- ["Δ = b² − 4ac","discriminant"],["x = <span class=frac><span>−b ± √Δ</span><span>2a</span></span>","racines si Δ > 0"],["x₀ = −<span class=frac><span>b</span><span>2a</span></span>","racine double si Δ = 0"],
- ["α = −<span class=frac><span>b</span><span>2a</span></span>,  β = f(α)","sommet S(α ; β)"],["a(x − α)² + β","forme canonique"],["a(x − x₁)(x − x₂)","forme factorisée"],
+ ["Δ = b² − 4ac","discriminant"],["x = <span class=frac><span>−b ± √Δ</span><span>2a</span></span>","racines si Δ > 0"],["x<sub>0</sub> = −<span class=frac><span>b</span><span>2a</span></span>","racine double si Δ = 0"],
+ ["α = −<span class=frac><span>b</span><span>2a</span></span>,  β = f(α)","sommet S(α ; β)"],["a(x − α)² + β","forme canonique"],["a(x − x<sub>1</sub>)(x − x<sub>2</sub>)","forme factorisée"],
  ["S = −<span class=frac><span>b</span><span>a</span></span>,  P = <span class=frac><span>c</span><span>a</span></span>","somme et produit"],["signe de a dehors, −a entre","signe du trinôme"]
 ];
 
@@ -292,7 +293,7 @@ const EXOS = [
  {t:"Racines, somme, produit, recherche de fonctions", lvl:3, tags:["racine évidente","S et P","tableau"], q:[
    "f(x) = 3x² − 5x − 2 : vérifier que 2 est racine, trouver l'autre sans Δ, factoriser.","Deux réels de somme 1 et de produit −12.",
    "g s'annule en −1 et 3, passe par A(1 ; 8) : g(x) ? A est-il le sommet ?","h croît jusqu'à x = −3 (valeur 4) puis décroît, h(−1) = 2 : forme canonique, développée, racines."],
-  c:`<p>1. f(2) = 0 ; P = −<span class=frac><span>2</span><span>3</span></span> = 2 × x₂ donc <span class="ans">x₂ = −<span class=frac><span>1</span><span>3</span></span></span> ; <span class="ans">f(x) = (x − 2)(3x + 1)</span>.</p>
+  c:`<p>1. f(2) = 0 ; P = −<span class=frac><span>2</span><span>3</span></span> = 2 × x<sub>2</sub> donc <span class="ans">x<sub>2</sub> = −<span class=frac><span>1</span><span>3</span></span></span> ; <span class="ans">f(x) = (x − 2)(3x + 1)</span>.</p>
   <p>2. X² − X − 12 = 0, Δ = 49 : <span class="ans">−3 et 4</span>.</p>
   <p>3. g = a(x + 1)(x − 3), g(1) = −4a = 8 : <span class="ans">g(x) = −2x² + 4x + 6</span>. α = 1, β = 8 : oui, A est le sommet.</p>
   <p>4. a &lt; 0 ; h = a(x + 3)² + 4 et h(−1) = 4a + 4 = 2 : <span class="ans">h(x) = −½(x + 3)² + 4 = −½x² − 3x − ½</span> ; racines <span class="ans">−3 ± 2√2</span>.</p>`},
