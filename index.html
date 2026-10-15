@@ -260,7 +260,19 @@ const COURS = [
  {id:"equations", t:"Équations qui se ramènent au second degré", h:`
   <div class="meth"><b>Équation bicarrée</b><span class="m">ax⁴ + bx² + c = 0</span> : poser <span class="m">X = x²</span> avec <b>X ≥ 0</b>, rejeter les X négatifs, puis <span class="m">x = ±√X</span>.</div>
   <div class="meth"><b>Équation / inéquation quotient</b>1. Valeurs interdites. 2. Tout à gauche, même dénominateur (ne jamais multiplier par le dénominateur dans une inéquation). 3. Tableau de signe avec « || » sur la valeur interdite.</div>
-  <div class="ex"><b>Exemple</b><span class="m">3x⁴ + x² − 2 = 0</span> : X = <span class=frac><span>2</span><span>3</span></span> (X = −1 rejeté), donc <span class="m">x = ±<span class=frac><span>√6</span><span>3</span></span></span>.</div>`},
+  <div class="ex"><b>Exemple détaillé — résoudre <span class="m">3x⁴ + x² − 2 = 0</span></b>
+  <p><b>Étape 1 · Changement de variable.</b> On pose <span class="m">X = x²</span>, avec <b>X ≥ 0</b> (un carré est toujours positif). L'équation devient :</p>
+  <div class="formula">3X² + X − 2 = 0</div>
+  <p><b>Étape 2 · Résoudre en X.</b> a = 3, b = 1, c = −2.<br><span class="m">Δ = 1² − 4 × 3 × (−2) = 1 + 24 = 25</span> &gt; 0, donc <span class="m">√Δ = 5</span>.</p>
+  <div class="formula">X<sub>1</sub> = <span class=frac><span>−1 − 5</span><span>6</span></span> = −1 &nbsp;&nbsp;&nbsp; X<sub>2</sub> = <span class=frac><span>−1 + 5</span><span>6</span></span> = <span class=frac><span>4</span><span>6</span></span> = <span class=frac><span>2</span><span>3</span></span></div>
+  <p><i>Astuce : −1 est une racine évidente, car 3 × (−1)² + (−1) − 2 = 3 − 1 − 2 = 0.</i></p>
+  <p><b>Étape 3 · Trier les solutions.</b> X = x² doit être positif : <b>X = −1 est impossible</b>, on le rejette. On garde <span class="m">X = <span class=frac><span>2</span><span>3</span></span></span>.</p>
+  <p><b>Étape 4 · Revenir à x.</b></p>
+  <div class="formula">x² = <span class=frac><span>2</span><span>3</span></span> &nbsp;⟺&nbsp; x = √<span class=frac><span>2</span><span>3</span></span> &nbsp;ou&nbsp; x = −√<span class=frac><span>2</span><span>3</span></span></div>
+  <p><b>Étape 5 · Simplifier la racine</b> (on enlève la racine du dénominateur) :</p>
+  <div class="formula">√<span class=frac><span>2</span><span>3</span></span> = <span class=frac><span>√2</span><span>√3</span></span> = <span class=frac><span>√2 × √3</span><span>√3 × √3</span></span> = <span class=frac><span>√6</span><span>3</span></span></div>
+  <p><b>Conclusion :</b> <span class="m">S = { −<span class=frac><span>√6</span><span>3</span></span> ; <span class=frac><span>√6</span><span>3</span></span> }</span></p>
+  <p><i>Vérification : x² = <span class=frac><span>6</span><span>9</span></span> = <span class=frac><span>2</span><span>3</span></span> et x⁴ = <span class=frac><span>4</span><span>9</span></span>, donc 3 × <span class=frac><span>4</span><span>9</span></span> + <span class=frac><span>2</span><span>3</span></span> − 2 = <span class=frac><span>4</span><span>3</span></span> + <span class=frac><span>2</span><span>3</span></span> − 2 = 0 ✓</i></p></div>`},
  {id:"probleme", t:"Problèmes d'optimisation", h:`
   <div class="meth"><b>Méthode</b>1. Lire les unités (milliers, dizaines…). 2. « Maximum / minimum » → sommet (α ; β). 3. « Quand vaut-il … ? » → résoudre f(x) = valeur. 4. Vérifier que les solutions sont dans l'intervalle. 5. Conclure par une phrase avec l'unité.</div>`}
 ];
