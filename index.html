@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Cours, méthodes, exercices corrigés et quiz de mathématiques de Première spécialité.">
+<title>Cahier Maths 1ère</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=Caveat:wght@600&display=swap">
+<style>
+/* Layout : un cahier d'écolier — marge rouge à gauche, lignes Seyès en filigrane, encre bleue ; en sombre, un tableau noir et de la craie. */
+:root{
+  --paper:#F6F8FC; --card:#FFFFFF; --rule:#D6DCF0; --rule-soft:#E8ECF7;
+  --ink:#16213D; --ink-soft:#4F5B7A; --accent:#2346B0; --accent-soft:#E3E9FB;
+  --margin:#D23B57; --margin-soft:#FBE7EB; --green:#17724B; --green-soft:#E2F4EA;
+  --amber:#A86A08; --amber-soft:#FCF1DC;
+  --f-display:"Fraunces", Georgia, "Times New Roman", serif;
+  --f-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --f-math:"STIX Two Text", "Cambria Math", "Times New Roman", serif;
+  --f-hand:"Caveat", "Comic Sans MS", cursive;
+  --radius:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#141C1A; --card:#1C2623; --rule:#2E3B37; --rule-soft:#24302C;
+  --ink:#ECF1EE; --ink-soft:#A8B7B1; --accent:#9DB8FF; --accent-soft:#22304F;
+  --margin:#FF7F93; --margin-soft:#3A2128; --green:#74D6A4; --green-soft:#1C3529;
+  --amber:#F2C66B; --amber-soft:#3A3020; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#141C1A; --card:#1C2623; --rule:#2E3B37; --rule-soft:#24302C;
+  --ink:#ECF1EE; --ink-soft:#A8B7B1; --accent:#9DB8FF; --accent-soft:#22304F;
+  --margin:#FF7F93; --margin-soft:#3A2128; --green:#74D6A4; --green-soft:#1C3529;
+  --amber:#F2C66B; --amber-soft:#3A3020; color-scheme:dark }
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px));
+  background-image:repeating-linear-gradient(to bottom, transparent 0 31px, var(--rule-soft) 31px 32px);}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:980px;margin:0 auto}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.2;margin:0}
+.m{font-family:var(--f-math);font-size:1.08em;white-space:nowrap}
+.hand{font-family:var(--f-hand);color:var(--margin);font-size:1.3em;line-height:1}
+
+/* En-tête */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule);
+  margin:0 calc(-1 * max(16px, env(safe-area-inset-left,0px))) 0;padding:10px max(16px, env(safe-area-inset-right,0px)) 10px max(16px, env(safe-area-inset-left,0px))}
+header.top .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between}
+.brand{display:flex;align-items:baseline;gap:8px;text-decoration:none;color:var(--ink)}
+.brand b{font-family:var(--f-display);font-size:1.3rem}
+.brand span{font-family:var(--f-hand);color:var(--margin);font-size:1.35rem}
+nav.top a{text-decoration:none;color:var(--ink-soft);font-weight:700;padding:6px 10px;border-radius:8px}
+nav.top a[aria-current="page"],nav.top a:hover{color:var(--accent);background:var(--accent-soft)}
+
+main{padding-block:28px 60px}
+.page{border-left:2px solid var(--margin);padding-left:clamp(14px,3vw,28px)}
+
+/* Accueil */
+.hero{display:grid;gap:10px;margin-bottom:28px}
+.hero h1{font-size:clamp(2rem,5vw,3.1rem)}
+.hero p{max-width:62ch;color:var(--ink-soft);margin:0}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--margin);font-weight:700}
+.section-title{display:flex;align-items:baseline;gap:10px;margin:34px 0 14px}
+.section-title h2{font-size:1.5rem}
+.chap-main{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);padding:22px;display:grid;gap:14px}
+.chap-main .head{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:baseline}
+.chap-main h3{font-size:1.45rem}
+.pill{display:inline-block;font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--green-soft);color:var(--green)}
+.pill.soon{background:var(--rule-soft);color:var(--ink-soft)}
+.quick{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.quick a{display:grid;gap:2px;text-decoration:none;color:var(--ink);border:1px solid var(--rule);border-radius:8px;padding:12px 14px;background:var(--paper)}
+.quick a:hover{border-color:var(--accent)}
+.quick a b{color:var(--accent)}
+.quick a small{color:var(--ink-soft)}
+.soon-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px;margin:0;padding:0;list-style:none}
+.soon-list li{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:10px 14px;border:1px dashed var(--rule);border-radius:8px;color:var(--ink-soft);background:var(--card)}
+.soon-list small{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;counter-reset:s;margin:0;padding:0;list-style:none}
+.steps li{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);padding:14px 16px;counter-increment:s}
+.steps li::before{content:"J−" counter(s);display:block;font-family:var(--f-hand);color:var(--margin);font-size:1.5rem;line-height:1.1}
+.steps li:nth-child(1)::before{content:"J−4"}.steps li:nth-child(2)::before{content:"J−3"}
+.steps li:nth-child(3)::before{content:"J−2"}.steps li:nth-child(4)::before{content:"J−1"}
+.steps b{display:block}
+
+/* Chapitre */
+.chap-head{display:grid;gap:6px;margin-bottom:18px}
+.chap-head h1{font-size:clamp(1.8rem,4.2vw,2.6rem)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--rule);margin-bottom:22px}
+.tabs a{text-decoration:none;color:var(--ink-soft);font-weight:700;padding:8px 14px;border-radius:8px 8px 0 0;border:1px solid transparent;margin-bottom:-1px}
+.tabs a[aria-current="page"]{color:var(--accent);background:var(--card);border-color:var(--rule);border-bottom-color:var(--card)}
+.block{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px;min-width:0}
+.block h2{font-size:1.25rem;margin-bottom:8px;display:flex;gap:10px;align-items:baseline}
+.block h2 .n{font-family:var(--f-hand);color:var(--margin);font-size:1.5rem}
+.block p{margin:.4em 0}
+.prop,.meth,.trap,.ex{border-radius:8px;padding:10px 14px;margin:10px 0}
+.prop{background:var(--accent-soft)}
+.meth{background:var(--amber-soft)}
+.trap{background:var(--margin-soft)}
+.ex{background:var(--green-soft)}
+.prop>b:first-child,.meth>b:first-child,.trap>b:first-child,.ex>b:first-child{display:block;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+.prop>b:first-child{color:var(--accent)}.meth>b:first-child{color:var(--amber)}.trap>b:first-child{color:var(--margin)}.ex>b:first-child{color:var(--green)}
+.formula{font-family:var(--f-math);font-size:1.18rem;text-align:center;margin:8px 0}
+.scroll{overflow-x:auto}
+table.tab{border-collapse:collapse;margin:8px 0;font-family:var(--f-math);min-width:340px;width:100%;background:var(--card)}
+table.tab td,table.tab th{border:1px solid var(--rule);padding:6px 8px;text-align:center}
+table.tab th{background:var(--rule-soft);font-weight:600}
+table.grid{border-collapse:collapse;width:100%;min-width:520px;font-size:.95rem}
+table.grid th,table.grid td{border:1px solid var(--rule);padding:8px 10px;text-align:left;vertical-align:top}
+table.grid th{background:var(--rule-soft)}
+.express{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.express div{border:1px solid var(--rule);border-radius:8px;padding:10px 12px;background:var(--paper)}
+.express small{display:block;color:var(--ink-soft);font-size:.8rem}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.toc a{font-size:.88rem;text-decoration:none;border:1px solid var(--rule);border-radius:999px;padding:3px 10px;color:var(--ink-soft);background:var(--card)}
+.toc a:hover{color:var(--accent);border-color:var(--accent)}
+
+/* Exercices */
+.exo-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:.78rem;padding:2px 8px;border-radius:999px;background:var(--rule-soft);color:var(--ink-soft)}
+.stars{color:var(--amber);letter-spacing:2px}
+ol.q{padding-left:1.4em;margin:.4em 0}
+ol.q li{margin:.25em 0}
+details.corr{margin-top:12px;border:1px solid var(--rule);border-radius:8px;background:var(--paper)}
+details.corr summary{cursor:pointer;padding:10px 14px;font-weight:700;color:var(--green)}
+details.corr[open] summary{border-bottom:1px solid var(--rule)}
+details.corr .in{padding:10px 16px}
+details.corr .in p{margin:.35em 0}
+.ans{font-weight:700;color:var(--green)}
+
+/* Quiz */
+.quiz-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.bar{height:8px;background:var(--rule-soft);border-radius:99px;overflow:hidden;flex:1;min-width:140px}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.opts{display:grid;gap:8px;margin:12px 0}
+.opts button{font:inherit;text-align:left;padding:12px 14px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);color:var(--ink);cursor:pointer}
+.opts button:hover:not([disabled]){border-color:var(--accent)}
+.opts button.ok{border-color:var(--green);background:var(--green-soft)}
+.opts button.ko{border-color:var(--margin);background:var(--margin-soft)}
+.opts button[disabled]{cursor:default}
+.fb{padding:10px 14px;border-radius:8px;margin-top:6px}
+.btn{font:inherit;font-weight:700;border:1px solid var(--accent);color:var(--card);background:var(--accent);padding:9px 16px;border-radius:8px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:disabled{opacity:.5;cursor:default}
+.score{font-family:var(--f-display);font-size:3rem;color:var(--accent);line-height:1}
+
+/* Documents */
+.docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.doc{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);padding:14px;display:grid;grid-template-columns:76px 1fr;gap:12px;align-items:start}
+.doc img{width:76px;aspect-ratio:210/297;object-fit:cover;object-position:top;border:1px solid var(--rule);border-radius:4px;background:#fff}
+.doc h3{font-family:var(--f-body);font-size:1rem}
+.doc p{margin:2px 0 8px;color:var(--ink-soft);font-size:.88rem}
+.doc .act{display:flex;gap:6px;flex-wrap:wrap}
+.doc .act button{font-size:.88rem;padding:6px 12px}
+.doc-group{margin:22px 0 10px;font-size:1.05rem}
+.msg{font-size:.85rem;color:var(--margin);min-height:1em}
+
+/* Lecteur PDF */
+.reader{position:fixed;inset:0;z-index:20;background:var(--paper);display:flex;flex-direction:column}
+.reader .bar2{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid var(--rule);background:var(--card);
+  padding:calc(10px + env(safe-area-inset-top,0px)) max(16px, env(safe-area-inset-right,0px)) 10px max(16px, env(safe-area-inset-left,0px))}
+.reader .bar2 b{font-family:var(--f-display);font-size:1.05rem}
+.reader .pages{overflow:auto;flex:1;padding:16px max(16px, env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px, env(safe-area-inset-left,0px));display:grid;gap:14px;justify-items:center}
+.reader .pages img{width:100%;max-width:820px;background:#fff;border:1px solid var(--rule);box-shadow:0 2px 10px rgba(0,0,0,.08)}
+footer{color:var(--ink-soft);font-size:.85rem;padding-block:20px 30px;border-top:1px solid var(--rule)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<header class="top"><div class="wrap">
+  <a class="brand" href="#accueil"><b>Cahier Maths</b><span>1ère spé</span></a>
+  <nav class="top" aria-label="Navigation principale">
+    <a href="#accueil" data-nav="accueil">Accueil</a>
+    <a href="#ch1" data-nav="ch1">Ch. 1 · Second degré</a>
+  </nav>
+</div></header>
+
+<main class="wrap"><div id="view" class="page"></div></main>
+<footer class="wrap">Cahier Maths 1ère — cours, méthodes et exercices corrigés pour préparer les contrôles. Le site s'enrichit à chaque nouveau chapitre.</footer>
+<div id="reader" class="reader" hidden role="dialog" aria-modal="true" aria-labelledby="reader-title">
+  <div class="bar2"><b id="reader-title"></b><button class="btn ghost" id="reader-close" type="button">Fermer</button></div>
+  <div class="pages" id="reader-pages"></div>
+</div>
+
+<script>
+/* ================== DONNÉES : ajouter un chapitre = ajouter une entrée ici ================== */
+const UPCOMING = ["Suites numériques","Dérivation","Variations et courbes","Fonction exponentielle",
+  "Fonctions trigonométriques","Produit scalaire","Géométrie repérée","Probabilités conditionnelles","Variables aléatoires"];
+
+const DOCS = [
+  {group:"Cours", items:[
+    {id:"fiche-synthese", title:"Fiche de synthèse", desc:"Toutes les propriétés et méthodes du chapitre.", pages:5}]},
+  {group:"S'entraîner", items:[
+    {id:"interrogation", title:"Interrogation d'entraînement", desc:"Questions de cours + exercices ★ à ★★★.", pages:8},
+    {id:"interrogation-correction", title:"Interrogation — corrigé", desc:"Correction détaillée de l'interrogation.", pages:14},
+    {id:"delta-exercices", title:"Discriminant Δ — exercices", desc:"Δ, racines, signe, équations bicarrées.", pages:2},
+    {id:"delta-corrige", title:"Discriminant Δ — corrigé", desc:"Énoncés + corrections.", pages:4},
+    {id:"optimisation", title:"Problèmes d'optimisation", desc:"Antibiotique, sculpteur, triangle : énoncés et corrections.", pages:4}]},
+  {group:"Préparer le contrôle", items:[
+    {id:"devoir-sujet", title:"Devoir d'entraînement — sujet", desc:"6 exercices, 2 h, niveau soutenu.", pages:2},
+    {id:"devoir-corrige", title:"Devoir d'entraînement — corrigé", desc:"Correction rédigée comme attendue en devoir.", pages:6},
+    {id:"ds1-corrige", title:"DS n°1 — corrigé", desc:"Devoir surveillé du 7 octobre, corrigé détaillé.", pages:5}]}
+];
+
+const COURS = [
+ {id:"carre", t:"Fonction carré (rappels)", h:`
+  <p>La fonction carré <span class="m">x ↦ x²</span> est décroissante sur <span class="m">ℝ⁻</span>, croissante sur <span class="m">ℝ⁺</span>, positive et paire.</p>
+  <div class="prop"><b>Propriété</b>Si <span class="m">0 ≤ a ≤ b</span> alors <span class="m">a² ≤ b²</span>. Si <span class="m">a ≤ b ≤ 0</span> alors <span class="m">a² ≥ b²</span> (l'ordre s'inverse).<br>
+  Pour <span class="m">k &gt; 0</span> : <span class="m">x² &lt; k ⟺ −√k &lt; x &lt; √k</span> et <span class="m">x² &gt; k ⟺ x &lt; −√k ou x &gt; √k</span>.</div>
+  <div class="trap"><b>Piège classique</b>Si l'encadrement de x contient 0 (ex. <span class="m">−2 ≤ x ≤ 4</span>), on coupe en deux cas avant de recombiner : ici <span class="m">0 ≤ x² ≤ 16</span>.</div>`},
+ {id:"def", t:"Polynôme du second degré", h:`
+  <div class="prop"><b>Définition</b><span class="m">f(x) = ax² + bx + c</span> avec a, b, c réels et <b>a ≠ 0</b>.</div>
+  <div class="trap"><b>Piège classique</b>Toujours développer avant de conclure : <span class="m">2x(x−1) − 2x² + 5 = −2x + 5</span> n'est pas du second degré.</div>`},
+ {id:"racines", t:"Racines, forme factorisée, somme et produit", h:`
+  <p>Les <b>racines</b> de f sont les solutions de <span class="m">f(x) = 0</span>.</p>
+  <div class="prop"><b>Forme factorisée</b>Si f a deux racines <span class="m">x₁</span> et <span class="m">x₂</span> :<div class="formula">f(x) = a(x − x₁)(x − x₂)</div></div>
+  <div class="prop"><b>Somme et produit</b><div class="formula">S = x₁ + x₂ = −b∕a &nbsp;&nbsp;&nbsp; P = x₁ × x₂ = c∕a</div></div>
+  <div class="meth"><b>Méthode</b>Retrouver f à partir de ses racines et d'un point : écrire <span class="m">a(x − x₁)(x − x₂)</span>, puis calculer a avec le point donné (souvent <span class="m">f(0)</span>).</div>`},
+ {id:"signe", t:"Signe d'un trinôme", h:`
+  <div class="prop"><b>Propriété</b>f(x) est du <b>signe de a à l'extérieur des racines</b> et du <b>signe de −a entre les racines</b>.</div>
+  <div class="scroll"><table class="tab"><tr><th>x</th><td>−∞</td><td></td><td>x₁</td><td></td><td>x₂</td><td></td><td>+∞</td></tr>
+  <tr><th>a &gt; 0</th><td></td><td>+</td><td>0</td><td>−</td><td>0</td><td>+</td><td></td></tr>
+  <tr><th>a &lt; 0</th><td></td><td>−</td><td>0</td><td>+</td><td>0</td><td>−</td><td></td></tr></table></div>
+  <div class="meth"><b>Méthode — inéquation</b>1. Tout passer d'un côté (… ≥ 0). 2. Factoriser. 3. Tableau de signe. 4. Lire S (crochets fermés si ≥ ou ≤).</div>`},
+ {id:"canonique", t:"Forme canonique et variations", h:`
+  <div class="prop"><b>Forme canonique</b><div class="formula">f(x) = a(x − α)² + β &nbsp;&nbsp; avec α = −b∕(2a) et β = f(α)</div>
+  Sommet <span class="m">S(α ; β)</span>, axe de symétrie <span class="m">x = α</span>.</div>
+  <div class="scroll"><table class="tab"><tr><th>x</th><td>−∞</td><td></td><td>α</td><td></td><td>+∞</td></tr>
+  <tr><th>a &gt; 0</th><td></td><td>↘</td><td>β min</td><td>↗</td><td></td></tr>
+  <tr><th>a &lt; 0</th><td></td><td>↗</td><td>β max</td><td>↘</td><td></td></tr></table></div>`},
+ {id:"delta", t:"Le discriminant Δ", h:`
+  <div class="prop"><b>Théorème</b><div class="formula">Δ = b² − 4ac</div>
+  • <b>Δ &gt; 0</b> : deux racines <span class="m">x₁ = (−b − √Δ)∕(2a)</span> et <span class="m">x₂ = (−b + √Δ)∕(2a)</span>.<br>
+  • <b>Δ = 0</b> : une racine double <span class="m">x₀ = −b∕(2a)</span> et <span class="m">f(x) = a(x − x₀)²</span>.<br>
+  • <b>Δ &lt; 0</b> : aucune racine, f(x) a le signe de a partout.</div>
+  <div class="scroll"><table class="grid"><tr><th></th><th>Δ &gt; 0</th><th>Δ = 0</th><th>Δ &lt; 0</th></tr>
+  <tr><th>Racines</th><td>2 racines</td><td>1 racine double</td><td>aucune</td></tr>
+  <tr><th>Forme factorisée</th><td>a(x − x₁)(x − x₂)</td><td>a(x − x₀)²</td><td>impossible</td></tr>
+  <tr><th>Signe de f(x)</th><td>a dehors, −a entre</td><td>signe de a, nul en x₀</td><td>signe de a partout</td></tr></table></div>
+  <div class="ex"><b>Exemple</b><span class="m">3x² − 6x − 105</span> : Δ = 36 + 1260 = 1296 = 36², racines −5 et 7, donc <span class="m">f(x) = 3(x + 5)(x − 7)</span>.</div>
+  <div class="trap"><b>Piège classique</b>Le signe de a ! Pour <span class="m">−x² + 3x − 2</span>, a = −1 : Δ = 9 − 8 = 1 (et non 17).</div>`},
+ {id:"astuces", t:"Astuces et choix de la forme", h:`
+  <div class="meth"><b>Avant de calculer Δ</b>Identité remarquable • facteur commun (<span class="m">x² − 3x = x(x − 3)</span>) • racine évidente (tester 1, −1, 2) puis <span class="m">x₂ = (c∕a) ÷ x₁</span> • somme/produit.</div>
+  <div class="scroll"><table class="grid"><tr><th>Forme</th><th>Sert à…</th></tr>
+  <tr><td>Développée <span class="m">ax² + bx + c</span></td><td>calculer f(0), résoudre f(x) = c</td></tr>
+  <tr><td>Factorisée <span class="m">a(x − x₁)(x − x₂)</span></td><td>racines, signe, inéquations</td></tr>
+  <tr><td>Canonique <span class="m">a(x − α)² + β</span></td><td>sommet, extremum, variations, f(x) = β + …</td></tr></table></div>`},
+ {id:"equations", t:"Équations qui se ramènent au second degré", h:`
+  <div class="meth"><b>Équation bicarrée</b><span class="m">ax⁴ + bx² + c = 0</span> : poser <span class="m">X = x²</span> avec <b>X ≥ 0</b>, rejeter les X négatifs, puis <span class="m">x = ±√X</span>.</div>
+  <div class="meth"><b>Équation / inéquation quotient</b>1. Valeurs interdites. 2. Tout à gauche, même dénominateur (ne jamais multiplier par le dénominateur dans une inéquation). 3. Tableau de signe avec « || » sur la valeur interdite.</div>
+  <div class="ex"><b>Exemple</b><span class="m">3x⁴ + x² − 2 = 0</span> : X = 2∕3 (X = −1 rejeté), donc <span class="m">x = ±√6∕3</span>.</div>`},
+ {id:"probleme", t:"Problèmes d'optimisation", h:`
+  <div class="meth"><b>Méthode</b>1. Lire les unités (milliers, dizaines…). 2. « Maximum / minimum » → sommet (α ; β). 3. « Quand vaut-il … ? » → résoudre f(x) = valeur. 4. Vérifier que les solutions sont dans l'intervalle. 5. Conclure par une phrase avec l'unité.</div>`}
+];
+
+const EXPRESS = [
+ ["Δ = b² − 4ac","discriminant"],["x = (−b ± √Δ)∕(2a)","racines si Δ > 0"],["x₀ = −b∕(2a)","racine double si Δ = 0"],
+ ["α = −b∕(2a),  β = f(α)","sommet S(α ; β)"],["a(x − α)² + β","forme canonique"],["a(x − x₁)(x − x₂)","forme factorisée"],
+ ["S = −b∕a,  P = c∕a","somme et produit"],["signe de a dehors, −a entre","signe du trinôme"]
+];
+
+const EXOS = [
+ {t:"Fonction carré et inéquations", lvl:2, tags:["fonction carré","encadrement"], q:[
+   "Sachant que −3 ≤ x ≤ 2, encadrer x², puis A = 5 − 2x².","Résoudre 3 ≤ x² ≤ 12 (valeurs exactes).","Résoudre (x − 1)² &lt; 4."],
+  c:`<p>1. On coupe en 0 : sur [−3 ; 0], 0 ≤ x² ≤ 9 ; sur [0 ; 2], 0 ≤ x² ≤ 4, donc <span class="ans">0 ≤ x² ≤ 9</span>. ×(−2) (le sens change) : −18 ≤ −2x² ≤ 0, puis +5 : <span class="ans">−13 ≤ A ≤ 5</span>.</p>
+  <p>2. x² ≥ 3 ⟺ x ≤ −√3 ou x ≥ √3 ; x² ≤ 12 ⟺ −2√3 ≤ x ≤ 2√3. <span class="ans">S = [−2√3 ; −√3] ∪ [√3 ; 2√3]</span>.</p>
+  <p>3. −2 &lt; x − 1 &lt; 2 ⟺ −1 &lt; x &lt; 3. <span class="ans">S = ]−1 ; 3[</span>.</p>`},
+ {t:"Les trois formes d'un trinôme", lvl:2, tags:["formes","signe","variations"], intro:"f(x) = −2x² + 8x + 10", q:[
+   "Montrer que f(x) = −2(x − 2)² + 18.","Montrer que f(x) = −2(x + 1)(x − 5).",
+   "Avec la forme la plus adaptée : f(0) ; f(x) = 0 ; f(x) = 10 ; f(x) = 20 ; f(x) ≥ 0.","Tableau de variations, extremum, axe de symétrie."],
+  c:`<p>1. −2(x² − 4x + 4) + 18 = −2x² + 8x + 10 ✓. 2. −2(x² − 4x − 5) = −2x² + 8x + 10 ✓.</p>
+  <p>3. Développée : <span class="ans">f(0) = 10</span>. Factorisée : <span class="ans">S = {−1 ; 5}</span>. Développée : −2x(x − 4) = 0, <span class="ans">S = {0 ; 4}</span>. Canonique : (x − 2)² = −1, <span class="ans">S = ∅</span>. Factorisée, a &lt; 0 : positif entre les racines, <span class="ans">S = [−1 ; 5]</span>.</p>
+  <p>4. a &lt; 0 : croissante sur ]−∞ ; 2], décroissante sur [2 ; +∞[. <span class="ans">Maximum 18 en x = 2</span>, axe <span class="ans">x = 2</span>.</p>`},
+ {t:"Discriminant et paramètre", lvl:3, tags:["Δ","inéquation","paramètre"], q:[
+   "Résoudre 2x² − 7x + 6 = 0.","Signe de −3x² + 2x − 1 sur ℝ.","Résoudre x² + x − 1 ≤ 0.",
+   "g(x) = mx² + 4x + m (m ≠ 0) : montrer Δ = 4(4 − m²).","Valeurs de m pour une racine double ?","Valeurs de m pour que g(x) &lt; 0 pour tout x ?"],
+  c:`<p>1. Δ = 1 : <span class="ans">S = {3∕2 ; 2}</span>. 2. Δ = −8 &lt; 0 et a = −3 : <span class="ans">toujours strictement négatif</span>.</p>
+  <p>3. Δ = 5 : <span class="ans">S = [(−1 − √5)∕2 ; (−1 + √5)∕2]</span> (a &gt; 0, négatif entre les racines).</p>
+  <p>4. Δ = 16 − 4m² = 4(4 − m²). 5. Δ = 0 ⟺ <span class="ans">m = 2 (racine −1) ou m = −2 (racine 1)</span>.</p>
+  <p>6. Il faut Δ &lt; 0 (m² &gt; 4) et a = m &lt; 0 : <span class="ans">m &lt; −2</span>.</p>`},
+ {t:"Racines, somme, produit, recherche de fonctions", lvl:3, tags:["racine évidente","S et P","tableau"], q:[
+   "f(x) = 3x² − 5x − 2 : vérifier que 2 est racine, trouver l'autre sans Δ, factoriser.","Deux réels de somme 1 et de produit −12.",
+   "g s'annule en −1 et 3, passe par A(1 ; 8) : g(x) ? A est-il le sommet ?","h croît jusqu'à x = −3 (valeur 4) puis décroît, h(−1) = 2 : forme canonique, développée, racines."],
+  c:`<p>1. f(2) = 0 ; P = −2∕3 = 2 × x₂ donc <span class="ans">x₂ = −1∕3</span> ; <span class="ans">f(x) = (x − 2)(3x + 1)</span>.</p>
+  <p>2. X² − X − 12 = 0, Δ = 49 : <span class="ans">−3 et 4</span>.</p>
+  <p>3. g = a(x + 1)(x − 3), g(1) = −4a = 8 : <span class="ans">g(x) = −2x² + 4x + 6</span>. α = 1, β = 8 : oui, A est le sommet.</p>
+  <p>4. a &lt; 0 ; h = a(x + 3)² + 4 et h(−1) = 4a + 4 = 2 : <span class="ans">h(x) = −½(x + 3)² + 4 = −½x² − 3x − ½</span> ; racines <span class="ans">−3 ± 2√2</span>.</p>`},
+ {t:"Équations et inéquations particulières", lvl:3, tags:["bicarrée","quotient"], q:[
+   "x⁴ − 7x² − 18 = 0","x∕(x − 1) = (3x + 1)∕(x + 1)","(x² − 4)∕(x + 3) ≥ 0"],
+  c:`<p>1. X = x² ≥ 0 : X² − 7X − 18 = 0, X = 9 (X = −2 rejeté) : <span class="ans">S = {−3 ; 3}</span>.</p>
+  <p>2. x ≠ ±1 ; produit en croix : 2x² − 3x − 1 = 0, Δ = 17 : <span class="ans">S = {(3 − √17)∕4 ; (3 + √17)∕4}</span>.</p>
+  <p>3. x ≠ −3 ; numérateur nul en ±2 ; tableau de signe : <span class="ans">S = ]−3 ; −2] ∪ [2 ; +∞[</span>.</p>`},
+ {t:"Problème : bénéfice d'une entreprise", lvl:2, tags:["optimisation"], intro:"x centaines d'objets, x ∈ [0 ; 15] ; C(x) = 2x² + 10x + 150 et R(x) = 50x (milliers d'euros).", q:[
+   "Montrer que B(x) = −2x² + 40x − 150.","Montrer que B(x) = −2(x − 10)² + 50 ; variations.","Production pour un bénéfice maximal ?","Production rentable (B(x) ≥ 0) ?","Production pour un bénéfice d'au moins 32 000 € ?"],
+  c:`<p>1. 50x − 2x² − 10x − 150 ✓. 2. Développer ✓ ; croissante sur [0 ; 10], décroissante sur [10 ; 15] ; B(0) = −150, B(10) = 50, B(15) = 0.</p>
+  <p>3. <span class="ans">1 000 objets, bénéfice 50 000 €</span>. 4. x² − 20x + 75 ≤ 0, racines 5 et 15 : <span class="ans">entre 500 et 1 500 objets</span>.</p>
+  <p>5. x² − 20x + 91 ≤ 0, racines 7 et 13 : <span class="ans">entre 700 et 1 300 objets</span>.</p>`}
+];
+
+const QUIZ = [
+ {q:"Le discriminant de 2x² − 3x + 1 vaut :", o:["1","17","−1","5"], a:0, e:"Δ = (−3)² − 4 × 2 × 1 = 9 − 8 = 1."},
+ {q:"Si Δ < 0 et a < 0, alors pour tout réel x, f(x) est :", o:["strictement positif","strictement négatif","nul en un point","positif puis négatif"], a:1, e:"Aucune racine : f garde le signe de a, ici négatif."},
+ {q:"La forme canonique de x² − 6x + 5 est :", o:["(x − 3)² − 4","(x + 3)² − 4","(x − 6)² + 5","(x − 3)² + 4"], a:0, e:"α = 3, β = 9 − 18 + 5 = −4."},
+ {q:"Les racines de (x − 2)(3x + 1) sont :", o:["2 et 1∕3","−2 et −1∕3","2 et −1∕3","2 et −3"], a:2, e:"3x + 1 = 0 donne x = −1∕3."},
+ {q:"La somme des racines de 3x² − 12x + 1 vaut :", o:["−4","4","1∕3","12"], a:1, e:"S = −b∕a = 12∕3 = 4."},
+ {q:"f(x) = −2(x + 1)² + 5 admet :", o:["un minimum 5 en x = 1","un maximum 5 en x = −1","un maximum −2 en x = 5","un minimum 5 en x = −1"], a:1, e:"α = −1, β = 5, et a = −2 < 0 : c'est un maximum."},
+ {q:"L'ensemble des solutions de x² ≤ 9 est :", o:["]−∞ ; 3]","[−3 ; 3]","[3 ; +∞[","]−∞ ; −3] ∪ [3 ; +∞["], a:1, e:"x² ≤ k ⟺ −√k ≤ x ≤ √k."},
+ {q:"Si −2 ≤ x ≤ 1, alors :", o:["1 ≤ x² ≤ 4","4 ≤ x² ≤ 1","0 ≤ x² ≤ 4","0 ≤ x² ≤ 1"], a:2, e:"L'intervalle contient 0 : le minimum de x² est 0, le maximum (−2)² = 4."},
+ {q:"Pour résoudre f(x) ≥ 0, la forme la plus adaptée est :", o:["développée","canonique","factorisée","aucune"], a:2, e:"La forme factorisée donne les racines, donc le tableau de signe."},
+ {q:"Combien de solutions a x⁴ − 5x² + 4 = 0 ?", o:["0","2","3","4"], a:3, e:"X = 1 ou X = 4, donc x = ±1 ou ±2."},
+ {q:"La valeur interdite de (x + 1)∕(2x − 6) est :", o:["−1","3","6","−3"], a:1, e:"2x − 6 = 0 ⟺ x = 3."},
+ {q:"Le trinôme unitaire de racines 2 et 5 est :", o:["x² + 7x + 10","x² − 7x − 10","x² − 7x + 10","x² + 3x − 10"], a:2, e:"(x − 2)(x − 5) = x² − 7x + 10 (S = 7, P = 10)."}
+];
+
+/* ================== RENDU ================== */
+const $ = s => document.querySelector(s);
+const view = $("#view");
+const stars = n => "★".repeat(n) + "☆".repeat(3 - n);
+function best(){ try{ return localStorage.getItem("quiz-ch1-best"); }catch(e){ return null; } }
+
+function home(){
+  const b = best();
+  view.innerHTML = `
+  <section class="hero">
+    <span class="eyebrow">Première spécialité mathématiques · 2026–2027</span>
+    <h1>Réviser ses maths, chapitre après chapitre</h1>
+    <p>Le cours à retenir, des méthodes, des exercices corrigés pas à pas et des quiz pour vérifier qu'on a compris avant le contrôle.</p>
+  </section>
+  <div class="section-title"><h2>Chapitres disponibles</h2><span class="hand">à réviser !</span></div>
+  <article class="chap-main">
+    <div class="head"><h3>Chapitre 1 · Polynômes du second degré</h3><span class="pill">Disponible</span></div>
+    <p style="margin:0;color:var(--ink-soft)">Fonction carré, formes développée, factorisée et canonique, signe, discriminant Δ, équations bicarrées et quotients, optimisation.</p>
+    <div class="quick">
+      <a href="#ch1"><b>Cours</b><small>9 notions + formules express</small></a>
+      <a href="#ch1-exercices"><b>Exercices</b><small>6 exercices corrigés</small></a>
+      <a href="#ch1-quiz"><b>Quiz</b><small>${b ? "Meilleur score : " + b + "/12" : "12 questions"}</small></a>
+      <a href="#ch1-documents"><b>Documents</b><small>9 PDF à lire ou télécharger</small></a>
+    </div>
+  </article>
+  <div class="section-title"><h2>Au programme de l'année</h2></div>
+  <ul class="soon-list">${UPCOMING.map(c => `<li>${c}<small>À venir</small></li>`).join("")}</ul>
+  <div class="section-title"><h2>Préparer un contrôle en 4 jours</h2></div>
+  <ol class="steps">
+    <li><b>Relire le cours</b>Lire la fiche du chapitre et recopier les formules express de mémoire.</li>
+    <li><b>Faire le quiz</b>Viser 10/12. Relire la notion de chaque erreur.</li>
+    <li><b>Exercices sans correction</b>Chercher sur une feuille, puis comparer avec la correction.</li>
+    <li><b>Sujet blanc</b>Faire le devoir d'entraînement en temps limité (2 h), puis le corriger.</li>
+  </ol>`;
+}
+
+function chapter(tab){
+  const tabs = [["ch1","Cours"],["ch1-exercices","Exercices"],["ch1-quiz","Quiz"],["ch1-documents","Documents"]];
+  view.innerHTML = `
+  <div class="chap-head"><span class="eyebrow">Chapitre 1</span><h1>Polynômes du second degré</h1></div>
+  <nav class="tabs" aria-label="Sections du chapitre">${tabs.map(([h,l]) => `<a href="#${h}" ${h === tab ? 'aria-current="page"' : ""}>${l}</a>`).join("")}</nav>
+  <div id="tab"></div>`;
+  const el = $("#tab");
+  if (tab === "ch1") renderCours(el);
+  else if (tab === "ch1-exercices") renderExos(el);
+  else if (tab === "ch1-quiz") renderQuiz(el);
+  else renderDocs(el);
+}
+
+function renderCours(el){
+  el.innerHTML = `
+  <section class="block"><h2><span class="n">★</span>Formules express à savoir par cœur</h2>
+    <div class="express">${EXPRESS.map(([f,l]) => `<div><span class="m">${f.replace(/</g,"&lt;")}</span><small>${l.replace(/</g,"&lt;")}</small></div>`).join("")}</div></section>
+  <nav class="toc" aria-label="Notions">${COURS.map(c => `<a href="#ch1" data-go="${c.id}">${c.t}</a>`).join("")}</nav>
+  ${COURS.map((c,i) => `<section class="block" id="n-${c.id}"><h2><span class="n">${i + 1}</span>${c.t}</h2>${c.h}</section>`).join("")}`;
+  el.querySelectorAll("[data-go]").forEach(a => a.addEventListener("click", e => {
+    e.preventDefault(); document.getElementById("n-" + a.dataset.go).scrollIntoView({behavior:"smooth", block:"start"});
+  }));
+}
+
+function renderExos(el){
+  el.innerHTML = `<p style="margin-top:0;color:var(--ink-soft)">Cherche chaque exercice sur une feuille avant d'ouvrir la correction. Le sujet complet et son corrigé rédigé sont aussi dans <a href="#ch1-documents">Documents</a>.</p>` +
+  EXOS.map((x,i) => `<section class="block">
+    <div class="exo-head"><h2><span class="n">${i + 1}</span>${x.t}</h2><span class="stars" aria-label="Difficulté ${x.lvl} sur 3">${stars(x.lvl)}</span></div>
+    <div class="tags">${x.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+    ${x.intro ? `<p class="m" style="white-space:normal">${x.intro}</p>` : ""}
+    <ol class="q">${x.q.map(q => `<li>${q}</li>`).join("")}</ol>
+    <details class="corr"><summary>Voir la correction</summary><div class="in">${x.c}</div></details>
+  </section>`).join("");
+}
+
+let qs = {i:0, score:0, done:false};
+function renderQuiz(el){
+  if (qs.done){
+    const prev = Number(best() || 0);
+    if (qs.score > prev){ try{ localStorage.setItem("quiz-ch1-best", qs.score); }catch(e){} }
+    const msg = qs.score >= 10 ? "Excellent, tu es prêt pour le contrôle." : qs.score >= 7 ? "Bien. Relis les notions des questions ratées." : "Reprends le cours et refais le quiz.";
+    el.innerHTML = `<section class="block" style="text-align:center"><p class="eyebrow">Résultat</p><div class="score">${qs.score}/12</div><p>${msg}</p>
+      <p style="color:var(--ink-soft)">Meilleur score : ${Math.max(prev, qs.score)}/12</p>
+      <button class="btn" id="restart" type="button">Recommencer</button> <a class="btn ghost" href="#ch1" style="text-decoration:none;display:inline-block">Revoir le cours</a></section>`;
+    $("#restart").onclick = () => { qs = {i:0, score:0, done:false}; renderQuiz(el); };
+    return;
+  }
+  const Q = QUIZ[qs.i];
+  el.innerHTML = `<section class="block">
+    <div class="quiz-top"><b>Question ${qs.i + 1} / ${QUIZ.length}</b><div class="bar" aria-hidden="true"><i style="width:${qs.i / QUIZ.length * 100}%"></i></div><span>Score : ${qs.score}</span></div>
+    <h2 style="font-family:var(--f-body);font-size:1.15rem">${Q.q.replace(/</g,"&lt;")}</h2>
+    <div class="opts">${Q.o.map((o,k) => `<button type="button" data-k="${k}" class="m" style="white-space:normal">${o}</button>`).join("")}</div>
+    <div id="fb"></div>
+    <div style="display:flex;justify-content:flex-end"><button class="btn" id="next" type="button" disabled>${qs.i === QUIZ.length - 1 ? "Voir mon score" : "Question suivante"}</button></div>
+  </section>`;
+  el.querySelectorAll(".opts button").forEach(btn => btn.onclick = () => {
+    const k = Number(btn.dataset.k), ok = k === Q.a;
+    if (ok) qs.score++;
+    el.querySelectorAll(".opts button").forEach(b => { b.disabled = true; const kk = Number(b.dataset.k);
+      if (kk === Q.a) b.classList.add("ok"); else if (kk === k) b.classList.add("ko"); });
+    $("#fb").innerHTML = `<div class="fb ${ok ? "ex" : "trap"}"><b>${ok ? "Bonne réponse" : "Pas tout à fait"}</b> ${Q.e.replace(/</g,"&lt;")}</div>`;
+    const n = $("#next"); n.disabled = false; n.focus();
+  });
+  $("#next").onclick = () => { qs.i++; if (qs.i >= QUIZ.length) qs.done = true; renderQuiz(el); };
+}
+
+let downloads = null;
+function renderDocs(el){
+  el.innerHTML = DOCS.map(g => `<h3 class="doc-group">${g.group}</h3><div class="docs">${g.items.map(d => `
+    <article class="doc"><img src="pages/${d.id}-1.jpg" alt="Première page : ${d.title}" loading="lazy">
+      <div><h3>${d.title}</h3><p>${d.desc} · ${d.pages} p.</p>
+        <div class="act"><button class="btn" type="button" data-read="${d.id}">Lire</button>
+        <a class="btn ghost" style="text-decoration:none" href="docs/${d.id}.pdf" download>Télécharger le PDF</a></div>
+        <div class="msg" id="msg-${d.id}" aria-live="polite"></div></div></article>`).join("")}</div>`).join("");
+  el.querySelectorAll("[data-read]").forEach(b => b.onclick = () => openReader(b.dataset.read));
+  el.querySelectorAll("[data-dl]").forEach(b => b.onclick = () => download(b.dataset.dl));
+}
+const allDocs = () => DOCS.flatMap(g => g.items);
+function openReader(id){
+  const d = allDocs().find(x => x.id === id);
+  $("#reader-title").textContent = d.title;
+  $("#reader-pages").innerHTML = Array.from({length:d.pages}, (_,i) => `<img src="pages/${id}-${i + 1}.jpg" alt="${d.title}, page ${i + 1}" loading="lazy">`).join("");
+  $("#reader").hidden = false; document.body.style.overflow = "hidden"; $("#reader-close").focus();
+}
+function closeReader(){ $("#reader").hidden = true; document.body.style.overflow = ""; }
+$("#reader-close").onclick = closeReader;
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#reader").hidden) closeReader(); });
+async function download(id){
+  const d = allDocs().find(x => x.id === id), msg = $("#msg-" + id);
+  msg.textContent = "";
+  try{
+    const blob = await (await fetch("docs/" + id + ".pdf")).blob();
+    await downloads.save({filename: d.title.replace(/[\\/:*?"<>|]/g, "") + ".pdf", data: blob});
+  }catch(err){
+    if (err && err.code === "declined") return;
+    msg.textContent = err && err.code === "rate_limited" ? "Une demande est déjà ouverte, réessaie dans un instant." : "Téléchargement indisponible ici. Utilise « Lire » pour consulter le document.";
+  }
+}
+
+function route(){
+  const h = (location.hash || "#accueil").slice(1);
+  closeReader();
+  document.querySelectorAll("nav.top a").forEach(a => a.toggleAttribute("aria-current", h.startsWith(a.dataset.nav) && (a.dataset.nav !== "accueil" || h === "accueil")));
+  document.querySelectorAll('nav.top a[aria-current]').forEach(a => a.setAttribute("aria-current","page"));
+  if (h.startsWith("ch1")) chapter(["ch1","ch1-exercices","ch1-quiz","ch1-documents"].includes(h) ? h : "ch1");
+  else home();
+  window.scrollTo(0, 0);
+}
+window.addEventListener("hashchange", route);
+route();
+
+if (window.claude && window.claude.use){
+  window.claude.use("downloads").then(ns => {
+    downloads = ns;
+    if (ns) document.querySelectorAll("[data-dl]").forEach(b => b.hidden = false);
+  }).catch(() => {});
+}
+</script>
+
+</body>
+</html>
