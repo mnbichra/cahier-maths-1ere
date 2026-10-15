@@ -220,7 +220,7 @@ const COURS = [
  {id:"racines", t:"Racines, forme factorisée, somme et produit", h:`
   <p>Les <b>racines</b> de f sont les solutions de <span class="m">f(x) = 0</span>.</p>
   <div class="prop"><b>Forme factorisée</b>Si f a deux racines <span class="m">x₁</span> et <span class="m">x₂</span> :<div class="formula">f(x) = a(x − x₁)(x − x₂)</div></div>
-  <div class="prop"><b>Somme et produit</b><div class="formula">S = x₁ + x₂ = −b∕a &nbsp;&nbsp;&nbsp; P = x₁ × x₂ = c∕a</div></div>
+  <div class="prop"><b>Somme et produit</b><div class="formula">S = x₁ + x₂ = −b/a &nbsp;&nbsp;&nbsp; P = x₁ × x₂ = c/a</div></div>
   <div class="meth"><b>Méthode</b>Retrouver f à partir de ses racines et d'un point : écrire <span class="m">a(x − x₁)(x − x₂)</span>, puis calculer a avec le point donné (souvent <span class="m">f(0)</span>).</div>`},
  {id:"signe", t:"Signe d'un trinôme", h:`
   <div class="prop"><b>Propriété</b>f(x) est du <b>signe de a à l'extérieur des racines</b> et du <b>signe de −a entre les racines</b>.</div>
@@ -229,15 +229,15 @@ const COURS = [
   <tr><th>a &lt; 0</th><td></td><td>−</td><td>0</td><td>+</td><td>0</td><td>−</td><td></td></tr></table></div>
   <div class="meth"><b>Méthode — inéquation</b>1. Tout passer d'un côté (… ≥ 0). 2. Factoriser. 3. Tableau de signe. 4. Lire S (crochets fermés si ≥ ou ≤).</div>`},
  {id:"canonique", t:"Forme canonique et variations", h:`
-  <div class="prop"><b>Forme canonique</b><div class="formula">f(x) = a(x − α)² + β &nbsp;&nbsp; avec α = −b∕(2a) et β = f(α)</div>
+  <div class="prop"><b>Forme canonique</b><div class="formula">f(x) = a(x − α)² + β &nbsp;&nbsp; avec α = −b/(2a) et β = f(α)</div>
   Sommet <span class="m">S(α ; β)</span>, axe de symétrie <span class="m">x = α</span>.</div>
   <div class="scroll"><table class="tab"><tr><th>x</th><td>−∞</td><td></td><td>α</td><td></td><td>+∞</td></tr>
   <tr><th>a &gt; 0</th><td></td><td>↘</td><td>β min</td><td>↗</td><td></td></tr>
   <tr><th>a &lt; 0</th><td></td><td>↗</td><td>β max</td><td>↘</td><td></td></tr></table></div>`},
  {id:"delta", t:"Le discriminant Δ", h:`
   <div class="prop"><b>Théorème</b><div class="formula">Δ = b² − 4ac</div>
-  • <b>Δ &gt; 0</b> : deux racines <span class="m">x₁ = (−b − √Δ)∕(2a)</span> et <span class="m">x₂ = (−b + √Δ)∕(2a)</span>.<br>
-  • <b>Δ = 0</b> : une racine double <span class="m">x₀ = −b∕(2a)</span> et <span class="m">f(x) = a(x − x₀)²</span>.<br>
+  • <b>Δ &gt; 0</b> : deux racines <span class="m">x₁ = (−b − √Δ)/(2a)</span> et <span class="m">x₂ = (−b + √Δ)/(2a)</span>.<br>
+  • <b>Δ = 0</b> : une racine double <span class="m">x₀ = −b/(2a)</span> et <span class="m">f(x) = a(x − x₀)²</span>.<br>
   • <b>Δ &lt; 0</b> : aucune racine, f(x) a le signe de a partout.</div>
   <div class="scroll"><table class="grid"><tr><th></th><th>Δ &gt; 0</th><th>Δ = 0</th><th>Δ &lt; 0</th></tr>
   <tr><th>Racines</th><td>2 racines</td><td>1 racine double</td><td>aucune</td></tr>
@@ -246,7 +246,7 @@ const COURS = [
   <div class="ex"><b>Exemple</b><span class="m">3x² − 6x − 105</span> : Δ = 36 + 1260 = 1296 = 36², racines −5 et 7, donc <span class="m">f(x) = 3(x + 5)(x − 7)</span>.</div>
   <div class="trap"><b>Piège classique</b>Le signe de a ! Pour <span class="m">−x² + 3x − 2</span>, a = −1 : Δ = 9 − 8 = 1 (et non 17).</div>`},
  {id:"astuces", t:"Astuces et choix de la forme", h:`
-  <div class="meth"><b>Avant de calculer Δ</b>Identité remarquable • facteur commun (<span class="m">x² − 3x = x(x − 3)</span>) • racine évidente (tester 1, −1, 2) puis <span class="m">x₂ = (c∕a) ÷ x₁</span> • somme/produit.</div>
+  <div class="meth"><b>Avant de calculer Δ</b>Identité remarquable • facteur commun (<span class="m">x² − 3x = x(x − 3)</span>) • racine évidente (tester 1, −1, 2) puis <span class="m">x₂ = (c/a) ÷ x₁</span> • somme/produit.</div>
   <div class="scroll"><table class="grid"><tr><th>Forme</th><th>Sert à…</th></tr>
   <tr><td>Développée <span class="m">ax² + bx + c</span></td><td>calculer f(0), résoudre f(x) = c</td></tr>
   <tr><td>Factorisée <span class="m">a(x − x₁)(x − x₂)</span></td><td>racines, signe, inéquations</td></tr>
@@ -254,15 +254,15 @@ const COURS = [
  {id:"equations", t:"Équations qui se ramènent au second degré", h:`
   <div class="meth"><b>Équation bicarrée</b><span class="m">ax⁴ + bx² + c = 0</span> : poser <span class="m">X = x²</span> avec <b>X ≥ 0</b>, rejeter les X négatifs, puis <span class="m">x = ±√X</span>.</div>
   <div class="meth"><b>Équation / inéquation quotient</b>1. Valeurs interdites. 2. Tout à gauche, même dénominateur (ne jamais multiplier par le dénominateur dans une inéquation). 3. Tableau de signe avec « || » sur la valeur interdite.</div>
-  <div class="ex"><b>Exemple</b><span class="m">3x⁴ + x² − 2 = 0</span> : X = 2∕3 (X = −1 rejeté), donc <span class="m">x = ±√6∕3</span>.</div>`},
+  <div class="ex"><b>Exemple</b><span class="m">3x⁴ + x² − 2 = 0</span> : X = 2/3 (X = −1 rejeté), donc <span class="m">x = ±√6/3</span>.</div>`},
  {id:"probleme", t:"Problèmes d'optimisation", h:`
   <div class="meth"><b>Méthode</b>1. Lire les unités (milliers, dizaines…). 2. « Maximum / minimum » → sommet (α ; β). 3. « Quand vaut-il … ? » → résoudre f(x) = valeur. 4. Vérifier que les solutions sont dans l'intervalle. 5. Conclure par une phrase avec l'unité.</div>`}
 ];
 
 const EXPRESS = [
- ["Δ = b² − 4ac","discriminant"],["x = (−b ± √Δ)∕(2a)","racines si Δ > 0"],["x₀ = −b∕(2a)","racine double si Δ = 0"],
- ["α = −b∕(2a),  β = f(α)","sommet S(α ; β)"],["a(x − α)² + β","forme canonique"],["a(x − x₁)(x − x₂)","forme factorisée"],
- ["S = −b∕a,  P = c∕a","somme et produit"],["signe de a dehors, −a entre","signe du trinôme"]
+ ["Δ = b² − 4ac","discriminant"],["x = (−b ± √Δ)/(2a)","racines si Δ > 0"],["x₀ = −b/(2a)","racine double si Δ = 0"],
+ ["α = −b/(2a),  β = f(α)","sommet S(α ; β)"],["a(x − α)² + β","forme canonique"],["a(x − x₁)(x − x₂)","forme factorisée"],
+ ["S = −b/a,  P = c/a","somme et produit"],["signe de a dehors, −a entre","signe du trinôme"]
 ];
 
 const EXOS = [
@@ -280,21 +280,21 @@ const EXOS = [
  {t:"Discriminant et paramètre", lvl:3, tags:["Δ","inéquation","paramètre"], q:[
    "Résoudre 2x² − 7x + 6 = 0.","Signe de −3x² + 2x − 1 sur ℝ.","Résoudre x² + x − 1 ≤ 0.",
    "g(x) = mx² + 4x + m (m ≠ 0) : montrer Δ = 4(4 − m²).","Valeurs de m pour une racine double ?","Valeurs de m pour que g(x) &lt; 0 pour tout x ?"],
-  c:`<p>1. Δ = 1 : <span class="ans">S = {3∕2 ; 2}</span>. 2. Δ = −8 &lt; 0 et a = −3 : <span class="ans">toujours strictement négatif</span>.</p>
-  <p>3. Δ = 5 : <span class="ans">S = [(−1 − √5)∕2 ; (−1 + √5)∕2]</span> (a &gt; 0, négatif entre les racines).</p>
+  c:`<p>1. Δ = 1 : <span class="ans">S = {3/2 ; 2}</span>. 2. Δ = −8 &lt; 0 et a = −3 : <span class="ans">toujours strictement négatif</span>.</p>
+  <p>3. Δ = 5 : <span class="ans">S = [(−1 − √5)/2 ; (−1 + √5)/2]</span> (a &gt; 0, négatif entre les racines).</p>
   <p>4. Δ = 16 − 4m² = 4(4 − m²). 5. Δ = 0 ⟺ <span class="ans">m = 2 (racine −1) ou m = −2 (racine 1)</span>.</p>
   <p>6. Il faut Δ &lt; 0 (m² &gt; 4) et a = m &lt; 0 : <span class="ans">m &lt; −2</span>.</p>`},
  {t:"Racines, somme, produit, recherche de fonctions", lvl:3, tags:["racine évidente","S et P","tableau"], q:[
    "f(x) = 3x² − 5x − 2 : vérifier que 2 est racine, trouver l'autre sans Δ, factoriser.","Deux réels de somme 1 et de produit −12.",
    "g s'annule en −1 et 3, passe par A(1 ; 8) : g(x) ? A est-il le sommet ?","h croît jusqu'à x = −3 (valeur 4) puis décroît, h(−1) = 2 : forme canonique, développée, racines."],
-  c:`<p>1. f(2) = 0 ; P = −2∕3 = 2 × x₂ donc <span class="ans">x₂ = −1∕3</span> ; <span class="ans">f(x) = (x − 2)(3x + 1)</span>.</p>
+  c:`<p>1. f(2) = 0 ; P = −2/3 = 2 × x₂ donc <span class="ans">x₂ = −1/3</span> ; <span class="ans">f(x) = (x − 2)(3x + 1)</span>.</p>
   <p>2. X² − X − 12 = 0, Δ = 49 : <span class="ans">−3 et 4</span>.</p>
   <p>3. g = a(x + 1)(x − 3), g(1) = −4a = 8 : <span class="ans">g(x) = −2x² + 4x + 6</span>. α = 1, β = 8 : oui, A est le sommet.</p>
   <p>4. a &lt; 0 ; h = a(x + 3)² + 4 et h(−1) = 4a + 4 = 2 : <span class="ans">h(x) = −½(x + 3)² + 4 = −½x² − 3x − ½</span> ; racines <span class="ans">−3 ± 2√2</span>.</p>`},
  {t:"Équations et inéquations particulières", lvl:3, tags:["bicarrée","quotient"], q:[
-   "x⁴ − 7x² − 18 = 0","x∕(x − 1) = (3x + 1)∕(x + 1)","(x² − 4)∕(x + 3) ≥ 0"],
+   "x⁴ − 7x² − 18 = 0","x/(x − 1) = (3x + 1)/(x + 1)","(x² − 4)/(x + 3) ≥ 0"],
   c:`<p>1. X = x² ≥ 0 : X² − 7X − 18 = 0, X = 9 (X = −2 rejeté) : <span class="ans">S = {−3 ; 3}</span>.</p>
-  <p>2. x ≠ ±1 ; produit en croix : 2x² − 3x − 1 = 0, Δ = 17 : <span class="ans">S = {(3 − √17)∕4 ; (3 + √17)∕4}</span>.</p>
+  <p>2. x ≠ ±1 ; produit en croix : 2x² − 3x − 1 = 0, Δ = 17 : <span class="ans">S = {(3 − √17)/4 ; (3 + √17)/4}</span>.</p>
   <p>3. x ≠ −3 ; numérateur nul en ±2 ; tableau de signe : <span class="ans">S = ]−3 ; −2] ∪ [2 ; +∞[</span>.</p>`},
  {t:"Problème : bénéfice d'une entreprise", lvl:2, tags:["optimisation"], intro:"x centaines d'objets, x ∈ [0 ; 15] ; C(x) = 2x² + 10x + 150 et R(x) = 50x (milliers d'euros).", q:[
    "Montrer que B(x) = −2x² + 40x − 150.","Montrer que B(x) = −2(x − 10)² + 50 ; variations.","Production pour un bénéfice maximal ?","Production rentable (B(x) ≥ 0) ?","Production pour un bénéfice d'au moins 32 000 € ?"],
@@ -307,14 +307,14 @@ const QUIZ = [
  {q:"Le discriminant de 2x² − 3x + 1 vaut :", o:["1","17","−1","5"], a:0, e:"Δ = (−3)² − 4 × 2 × 1 = 9 − 8 = 1."},
  {q:"Si Δ < 0 et a < 0, alors pour tout réel x, f(x) est :", o:["strictement positif","strictement négatif","nul en un point","positif puis négatif"], a:1, e:"Aucune racine : f garde le signe de a, ici négatif."},
  {q:"La forme canonique de x² − 6x + 5 est :", o:["(x − 3)² − 4","(x + 3)² − 4","(x − 6)² + 5","(x − 3)² + 4"], a:0, e:"α = 3, β = 9 − 18 + 5 = −4."},
- {q:"Les racines de (x − 2)(3x + 1) sont :", o:["2 et 1∕3","−2 et −1∕3","2 et −1∕3","2 et −3"], a:2, e:"3x + 1 = 0 donne x = −1∕3."},
- {q:"La somme des racines de 3x² − 12x + 1 vaut :", o:["−4","4","1∕3","12"], a:1, e:"S = −b∕a = 12∕3 = 4."},
+ {q:"Les racines de (x − 2)(3x + 1) sont :", o:["2 et 1/3","−2 et −1/3","2 et −1/3","2 et −3"], a:2, e:"3x + 1 = 0 donne x = −1/3."},
+ {q:"La somme des racines de 3x² − 12x + 1 vaut :", o:["−4","4","1/3","12"], a:1, e:"S = −b/a = 12/3 = 4."},
  {q:"f(x) = −2(x + 1)² + 5 admet :", o:["un minimum 5 en x = 1","un maximum 5 en x = −1","un maximum −2 en x = 5","un minimum 5 en x = −1"], a:1, e:"α = −1, β = 5, et a = −2 < 0 : c'est un maximum."},
  {q:"L'ensemble des solutions de x² ≤ 9 est :", o:["]−∞ ; 3]","[−3 ; 3]","[3 ; +∞[","]−∞ ; −3] ∪ [3 ; +∞["], a:1, e:"x² ≤ k ⟺ −√k ≤ x ≤ √k."},
  {q:"Si −2 ≤ x ≤ 1, alors :", o:["1 ≤ x² ≤ 4","4 ≤ x² ≤ 1","0 ≤ x² ≤ 4","0 ≤ x² ≤ 1"], a:2, e:"L'intervalle contient 0 : le minimum de x² est 0, le maximum (−2)² = 4."},
  {q:"Pour résoudre f(x) ≥ 0, la forme la plus adaptée est :", o:["développée","canonique","factorisée","aucune"], a:2, e:"La forme factorisée donne les racines, donc le tableau de signe."},
  {q:"Combien de solutions a x⁴ − 5x² + 4 = 0 ?", o:["0","2","3","4"], a:3, e:"X = 1 ou X = 4, donc x = ±1 ou ±2."},
- {q:"La valeur interdite de (x + 1)∕(2x − 6) est :", o:["−1","3","6","−3"], a:1, e:"2x − 6 = 0 ⟺ x = 3."},
+ {q:"La valeur interdite de (x + 1)/(2x − 6) est :", o:["−1","3","6","−3"], a:1, e:"2x − 6 = 0 ⟺ x = 3."},
  {q:"Le trinôme unitaire de racines 2 et 5 est :", o:["x² + 7x + 10","x² − 7x − 10","x² − 7x + 10","x² + 3x − 10"], a:2, e:"(x − 2)(x − 5) = x² − 7x + 10 (S = 7, P = 10)."}
 ];
 
