@@ -2,6 +2,8 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Cours, méthodes, exercices corrigés et quiz de mathématiques de Première spécialité.">
 <title>Cahier Maths 1ère</title>
@@ -340,7 +342,7 @@ const QUIZ = [
 const $ = s => document.querySelector(s);
 const view = $("#view");
 const stars = n => "★".repeat(n) + "☆".repeat(3 - n);
-function best(){ try{ return localStorage.getItem("quiz-ch1-best"); }catch(e){ return null; } }
+function best(){ try{ const v = parseInt(localStorage.getItem("quiz-ch1-best"), 10); return v >= 0 && v <= 12 ? v : null; }catch(e){ return null; } }
 
 function home(){
   const b = best();
@@ -357,7 +359,7 @@ function home(){
     <div class="quick">
       <a href="#ch1"><b>Cours</b><small>9 notions + formules express</small></a>
       <a href="#ch1-exercices"><b>Exercices</b><small>6 exercices corrigés</small></a>
-      <a href="#ch1-quiz"><b>Quiz</b><small>${b ? "Meilleur score : " + b + "/12" : "12 questions"}</small></a>
+      <a href="#ch1-quiz"><b>Quiz</b><small>${b !== null ? "Meilleur score : " + b + "/12" : "12 questions"}</small></a>
       <a href="#ch1-documents"><b>Documents</b><small>9 PDF à lire ou télécharger</small></a>
     </div>
   </article>
