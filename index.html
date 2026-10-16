@@ -175,6 +175,7 @@ details.corr .in p{margin:.35em 0}
 .reader .pages img{width:100%;max-width:820px;background:#fff;border:1px solid var(--rule);box-shadow:0 2px 10px rgba(0,0,0,.08)}
 footer{color:var(--ink-soft);font-size:.85rem;padding-block:20px 30px;border-top:1px solid var(--rule)}
 @media (max-width:520px){.tabs a{padding:8px 7px;font-size:.92rem}}
+pre.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.92rem;line-height:1.5;background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:12px 14px;overflow-x:auto;margin:10px 0}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 </head>
@@ -186,6 +187,7 @@ footer{color:var(--ink-soft);font-size:.85rem;padding-block:20px 30px;border-top
   <nav class="top" aria-label="Navigation principale">
     <a href="#accueil" data-nav="accueil">Accueil</a>
     <a href="#ch1" data-nav="ch1">Ch. 1 · Second degré</a>
+    <a href="#ch2" data-nav="ch2">Ch. 2 · Suites</a>
   </nav>
 </div></header>
 
@@ -198,11 +200,13 @@ footer{color:var(--ink-soft);font-size:.85rem;padding-block:20px 30px;border-top
 
 <script>
 /* ================== DONNÉES : ajouter un chapitre = ajouter une entrée ici ================== */
-const UPCOMING = ["Suites numériques","Dérivation","Variations et courbes","Fonction exponentielle",
+const UPCOMING = ["Dérivation","Variations et courbes","Fonction exponentielle",
   "Fonctions trigonométriques","Produit scalaire","Géométrie repérée","Probabilités conditionnelles","Variables aléatoires"];
 
 const DOCS = [
   {group:"Cours", items:[
+    {id:"cours-complet", title:"Cours complet détaillé", desc:"14 notions, formules et exemples corrigés pas à pas.", pages:15},
+    {id:"formulaire", title:"Formulaire à apprendre par cœur", desc:"Toutes les formules du chapitre en 3 pages.", pages:3},
     {id:"fiche-synthese", title:"Fiche de synthèse", desc:"Toutes les propriétés et méthodes du chapitre.", pages:5}]},
   {group:"S'entraîner", items:[
     {id:"interrogation", title:"Interrogation d'entraînement", desc:"Questions de cours + exercices ★ à ★★★.", pages:8},
@@ -338,14 +342,142 @@ const QUIZ = [
  {q:"Le trinôme unitaire de racines 2 et 5 est :", o:["x² + 7x + 10","x² − 7x − 10","x² − 7x + 10","x² + 3x − 10"], a:2, e:"(x − 2)(x − 5) = x² − 7x + 10 (S = 7, P = 10)."}
 ];
 
+
+/* ---------- Chapitre 2 : Suites numériques ---------- */
+const DOCS2 = [
+  {group:"Cours", items:[
+    {id:"suites-cours", title:"Cours détaillé — Suites (partie 1)", desc:"Définitions, notations, explicite / récurrence, graphiques, exemples pas à pas.", pages:8}]}
+];
+
+const COURS2 = [
+ {id:"s-def", t:"Qu'est-ce qu'une suite ?", h:`
+  <div class="prop"><b>Définition</b>Une <b>suite numérique</b> associe à chaque entier naturel n un nombre réel noté <span class="m">u<sub>n</sub></span>.<br>
+  • n est l'<b>indice</b> (ou <b>rang</b>) ; • <span class="m">u<sub>n</sub></span> est le <b>terme de rang n</b> ; • la suite entière se note <span class="m">(u<sub>n</sub>)</span>.</div>
+  <div class="ex"><b>Exemple — les bâtonnets</b>Rangée 1 : 3 bâtonnets, rangée 2 : 7, rangée 3 : 11… On note <span class="m">u<sub>n</sub></span> le nombre de bâtonnets de la rangée n : <span class="m">u<sub>1</sub> = 3, u<sub>2</sub> = 7, u<sub>3</sub> = 11, u<sub>4</sub> = 15, u<sub>5</sub> = 19</span>.<br>
+  19 est le terme de <b>rang 5</b> : ne pas confondre le rang (5) et la valeur (19).</div>
+  <div class="trap"><b>Premier terme u<sub>0</sub> ou u<sub>1</sub> ?</b>Si la suite commence à <span class="m">u<sub>0</sub></span>, alors <span class="m">u<sub>n</sub></span> est le <b>(n + 1)<sup>e</sup></b> terme. Feuille pliée : <span class="m">v<sub>0</sub> = 1</span> (non pliée), donc <span class="m">v<sub>100</sub></span> est le 101<sup>e</sup> terme.</div>`},
+ {id:"s-nota", t:"Notations à ne pas confondre", h:`
+  <div class="scroll"><table class="grid"><tr><th>Notation</th><th>Signification</th><th>Bâtonnets, n = 3</th></tr>
+  <tr><td class="m">u<sub>n+1</sub></td><td>terme <b>suivant</b> (rang n + 1)</td><td>u<sub>4</sub> = 15</td></tr>
+  <tr><td class="m">u<sub>n</sub> + 1</td><td>terme de rang n <b>augmenté de 1</b></td><td>11 + 1 = 12</td></tr>
+  <tr><td class="m">u<sub>n−1</sub></td><td>terme <b>précédent</b></td><td>u<sub>2</sub> = 7</td></tr>
+  <tr><td class="m">u<sub>2n</sub></td><td>terme de rang 2n</td><td>u<sub>6</sub> = 23</td></tr>
+  <tr><td class="m">2u<sub>n</sub></td><td>double du terme de rang n</td><td>2 × 11 = 22</td></tr></table></div>
+  <div class="trap"><b>Piège classique</b><span class="m">u<sub>n+1</sub> ≠ u<sub>n</sub> + 1</span> : l'indice change le <b>rang</b>, le « + 1 » à côté change la <b>valeur</b>.</div>`},
+ {id:"s-expl", t:"Suite définie de façon explicite", h:`
+  <div class="prop"><b>Définition</b>On calcule <span class="m">u<sub>n</sub></span> <b>directement à partir de n</b> :<div class="formula">u<sub>n</sub> = f(n)</div>Avantage : on obtient n'importe quel terme sans calculer les précédents.</div>
+  <div class="ex"><b>Exemple détaillé — u<sub>n</sub> = 4n − 1 (bâtonnets)</b>
+  <p><b>Étape 1 :</b> on remplace n par 100 : <span class="m">u<sub>100</sub> = 4 × 100 − 1 = 399</span> bâtonnets.</p>
+  <p><b>Étape 2 :</b> on remplace n par (n + 1), avec des parenthèses : <span class="m">u<sub>n+1</sub> = 4(n + 1) − 1 = 4n + 3</span>.</p>
+  <p><b>Étape 3 :</b> à comparer avec <span class="m">u<sub>n</sub> + 1 = 4n</span> et <span class="m">u<sub>2n</sub> = 8n − 1</span>.</p></div>
+  <div class="ex"><b>Exemple — avec une fraction</b><span class="m">u<sub>n</sub> = <span class=frac><span>2n + 1</span><span>n + 2</span></span></span> : <span class="m">u<sub>0</sub> = <span class=frac><span>1</span><span>2</span></span></span>, <span class="m">u<sub>1</sub> = 1</span>, <span class="m">u<sub>3</sub> = <span class=frac><span>7</span><span>5</span></span></span>.</div>`},
+ {id:"s-rec", t:"Suite définie par récurrence", h:`
+  <div class="prop"><b>Définition</b>On donne le <b>premier terme</b> et une relation pour passer d'un terme au <b>suivant</b> :<div class="formula">u<sub>n+1</sub> = f(u<sub>n</sub>)</div>Inconvénient : pour u<sub>10</sub>, il faut calculer u<sub>1</sub>, u<sub>2</sub>, …, u<sub>9</sub>.</div>
+  <div class="ex"><b>Exemples du cours</b>Bâtonnets : <span class="m">u<sub>1</sub> = 3</span> et <span class="m">u<sub>n+1</sub> = u<sub>n</sub> + 4</span>. Feuille pliée : <span class="m">v<sub>0</sub> = 1</span> et <span class="m">v<sub>n+1</sub> = 2 × v<sub>n</sub></span> : 1, 2, 4, 8, 16, 32…</div>
+  <div class="ex"><b>Exemple détaillé — a<sub>0</sub> = 2 et a<sub>n+1</sub> = 3a<sub>n</sub> − 1</b>
+  <p><b>Étape 1 :</b> n = 0 : <span class="m">a<sub>1</sub> = 3 × 2 − 1 = 5</span>.</p>
+  <p><b>Étape 2 :</b> n = 1 : <span class="m">a<sub>2</sub> = 3 × 5 − 1 = 14</span>.</p>
+  <p><b>Étape 3 :</b> <span class="m">a<sub>3</sub> = 3 × 14 − 1 = 41</span> et <span class="m">a<sub>4</sub> = 3 × 41 − 1 = 122</span>.</p></div>
+  <div class="trap"><b>Piège classique</b>Sans le premier terme, la suite n'est pas définie. Si la relation contient n (ex. <span class="m">b<sub>n+1</sub> = b<sub>n</sub> + 2n + 3</span>), pour calculer b<sub>3</sub> on prend <b>n = 2</b>.</div>`},
+ {id:"s-pass", t:"Passer d'une écriture à l'autre", h:`
+  <div class="meth"><b>Récurrence → explicite (bâtonnets)</b>On part de u<sub>1</sub> = 3 et on fait <b>(n − 1) sauts</b> de + 4 :<div class="formula">u<sub>n</sub> = 3 + (n − 1) × 4 = 4n − 1</div>Rangée 100 : 99 sauts, u<sub>100</sub> = 3 + 99 × 4 = 399.</div>
+  <div class="meth"><b>Récurrence → explicite (feuille)</b>On part de v<sub>0</sub> = 1 et on multiplie n fois par 2 :<div class="formula">v<sub>n</sub> = 2<sup>n</sup></div>Après 100 pliages : <span class="m">2<sup>100</sup> mm ≈ 1,3 × 10<sup>27</sup> m</span>, plus que la taille de l'univers observable !</div>
+  <div class="meth"><b>Explicite → récurrence</b>Calculer <span class="m">u<sub>n+1</sub> − u<sub>n</sub></span> : avec u<sub>n</sub> = 4n − 1, on trouve (4n + 3) − (4n − 1) = 4, donc <span class="m">u<sub>n+1</sub> = u<sub>n</sub> + 4</span>.</div>`},
+ {id:"s-graph", t:"Représentation graphique", h:`
+  <div class="prop"><b>Définition</b>On place les points de coordonnées <span class="m">(n ; u<sub>n</sub>)</span>. <b>On ne les relie pas</b> : n ne prend que des valeurs entières.</div>
+  <p>Bâtonnets (on ajoute 4) : les points sont <b>alignés</b>. Feuille pliée (on multiplie par 2) : les points montent de plus en plus vite. Les graphiques sont dans le cours PDF (onglet Documents).</p>`},
+ {id:"s-modeles", t:"On ajoute ou on multiplie : deux suites modèles", h:`
+  <div class="scroll"><table class="grid"><tr><th></th><th>On ajoute toujours r</th><th>On multiplie toujours par q</th></tr>
+  <tr><th>Nom</th><td>suite <b>arithmétique</b></td><td>suite <b>géométrique</b></td></tr>
+  <tr><th>Relation</th><td class="m">u<sub>n+1</sub> = u<sub>n</sub> + r</td><td class="m">v<sub>n+1</sub> = q × v<sub>n</sub></td></tr>
+  <tr><th>Exemple</th><td>bâtonnets, r = 4</td><td>feuille pliée, q = 2</td></tr></table></div>
+  <div class="meth"><b>Reconnaître</b>Différences toutes égales → arithmétique. Quotients tous égaux → géométrique. Ex. : 5 ; 8 ; 11 ; 14 (r = 3) ; 3 ; 6 ; 12 ; 24 (q = 2) ; 1 ; 4 ; 9 ; 16 : ni l'une ni l'autre.</div>
+  <div class="ex"><b>Exemple détaillé — bâtonnets des rangées 1 à 100 (astuce de Gauss)</b>
+  <p><b>Étape 1 :</b> on écrit S = 3 + 7 + … + 395 + 399, puis la même somme à l'envers : S = 399 + 395 + … + 7 + 3.</p>
+  <p><b>Étape 2 :</b> on additionne terme à terme : chaque paire vaut 3 + 399 = 402, et il y a 100 paires, donc 2S = 100 × 402 = 40 200.</p>
+  <p><b>Étape 3 :</b> <span class="m">S = 20 100</span> bâtonnets. À retenir : somme = nombre de termes × <span class=frac><span>premier + dernier</span><span>2</span></span>.</p></div>`},
+ {id:"s-python", t:"Calculer des termes avec Python", h:`
+  <p>Une <b>boucle</b> applique la relation de récurrence autant de fois que nécessaire.</p>
+  <pre class="code">def feuille(n):
+    v = 1              # v0
+    for i in range(n): # n pliages
+        v = 2 * v
+    return v
+
+feuille(5)     # 32</pre>
+  <p><span class="m">range(n)</span> fait tourner la boucle <b>n fois</b> : on part de v<sub>0</sub> et on applique n fois la relation.</p>`}
+];
+
+const EXPRESS2 = [
+ ["u<sub>n</sub>","terme de rang n"],["u<sub>n+1</sub>","terme suivant (≠ u<sub>n</sub> + 1)"],["u<sub>n</sub> = f(n)","forme explicite"],
+ ["u<sub>0</sub> et u<sub>n+1</sub> = f(u<sub>n</sub>)","récurrence"],["u<sub>n+1</sub> = u<sub>n</sub> + r","on ajoute : arithmétique"],["v<sub>n+1</sub> = q × v<sub>n</sub>","on multiplie : géométrique"],
+ ["(n ; u<sub>n</sub>)","points du graphique, non reliés"],["n × <span class=frac><span>premier + dernier</span><span>2</span></span>","somme de n termes (arithmétique)"]
+];
+
+const EXOS2 = [
+ {t:"Suite explicite", lvl:1, tags:["explicite","notations"], intro:"Pour tout n ∈ ℕ, u<sub>n</sub> = 3n² − 2n + 1.", q:[
+   "Calculer u<sub>0</sub>, u<sub>1</sub>, u<sub>2</sub> et u<sub>10</sub>.","Exprimer u<sub>n+1</sub> en fonction de n.","Exprimer u<sub>n</sub> + 1 en fonction de n. Comparer."],
+  c:`<p>1. <span class="ans">u<sub>0</sub> = 1</span> ; u<sub>1</sub> = 3 − 2 + 1 = <span class="ans">2</span> ; u<sub>2</sub> = 12 − 4 + 1 = <span class="ans">9</span> ; u<sub>10</sub> = 300 − 20 + 1 = <span class="ans">281</span>.</p>
+  <p>2. u<sub>n+1</sub> = 3(n + 1)² − 2(n + 1) + 1 = 3n² + 6n + 3 − 2n − 2 + 1 = <span class="ans">3n² + 4n + 2</span>. <i>Vérif. n = 1 : 3 + 4 + 2 = 9 = u<sub>2</sub> ✓</i></p>
+  <p>3. u<sub>n</sub> + 1 = <span class="ans">3n² − 2n + 2</span> : ce n'est pas u<sub>n+1</sub>.</p>`},
+ {t:"Suites définies par récurrence", lvl:1, tags:["récurrence"], q:[
+   "u<sub>0</sub> = 4 et u<sub>n+1</sub> = 0,5u<sub>n</sub> + 3 : calculer u<sub>1</sub> à u<sub>4</sub>. Que remarque-t-on ?","v<sub>0</sub> = −1 et v<sub>n+1</sub> = v<sub>n</sub>² + 1 : calculer v<sub>1</sub>, v<sub>2</sub>, v<sub>3</sub>."],
+  c:`<p>1. u<sub>1</sub> = 2 + 3 = <span class="ans">5</span> ; u<sub>2</sub> = 2,5 + 3 = <span class="ans">5,5</span> ; u<sub>3</sub> = <span class="ans">5,75</span> ; u<sub>4</sub> = <span class="ans">5,875</span>. Les termes augmentent et semblent se rapprocher de <b>6</b>.</p>
+  <p>2. v<sub>1</sub> = (−1)² + 1 = <span class="ans">2</span> ; v<sub>2</sub> = 4 + 1 = <span class="ans">5</span> ; v<sub>3</sub> = 25 + 1 = <span class="ans">26</span>. <i>Attention : (−1)² = 1.</i></p>`},
+ {t:"Relation qui dépend de n — conjecture", lvl:2, tags:["récurrence","conjecture"], intro:"w<sub>1</sub> = 2 et w<sub>n+1</sub> = w<sub>n</sub> + 2n + 1.", q:[
+   "Calculer w<sub>2</sub>, w<sub>3</sub>, w<sub>4</sub>.","Conjecturer une expression de w<sub>n</sub> en fonction de n.","En déduire w<sub>20</sub>."],
+  c:`<p>1. n = 1 : w<sub>2</sub> = 2 + 3 = <span class="ans">5</span> ; n = 2 : w<sub>3</sub> = 5 + 5 = <span class="ans">10</span> ; n = 3 : w<sub>4</sub> = 10 + 7 = <span class="ans">17</span>.</p>
+  <p>2. 2, 5, 10, 17 = 1 + 1, 4 + 1, 9 + 1, 16 + 1 : <span class="ans">w<sub>n</sub> = n² + 1</span>.</p><p>3. <span class="ans">w<sub>20</sub> = 401</span>.</p>`},
+ {t:"Problème : adhérents d'un club", lvl:2, tags:["modélisation","on ajoute"], intro:"Un club compte 200 adhérents en 2026 et en gagne 35 chaque année. On note a<sub>n</sub> le nombre d'adhérents en 2026 + n.", q:[
+   "Donner a<sub>0</sub> et la relation entre a<sub>n+1</sub> et a<sub>n</sub>. Quelle est la nature de la suite ?","Exprimer a<sub>n</sub> en fonction de n.","Nombre d'adhérents en 2035 ?","En quelle année le club dépassera-t-il 500 adhérents ?"],
+  c:`<p>1. <span class="ans">a<sub>0</sub> = 200 et a<sub>n+1</sub> = a<sub>n</sub> + 35</span> : on ajoute toujours 35, suite <b>arithmétique</b> de raison 35.</p>
+  <p>2. n sauts de + 35 : <span class="ans">a<sub>n</sub> = 200 + 35n</span>.</p><p>3. 2035 ⟺ n = 9 : a<sub>9</sub> = 200 + 315 = <span class="ans">515 adhérents</span>.</p>
+  <p>4. 200 + 35n &gt; 500 ⟺ n &gt; <span class=frac><span>300</span><span>35</span></span> ≈ 8,57, donc n = 9 : <span class="ans">en 2035</span> (a<sub>8</sub> = 480).</p>`},
+ {t:"Problème : bactéries", lvl:2, tags:["modélisation","on multiplie"], intro:"Une culture contient 500 bactéries ; leur nombre double chaque heure. b<sub>n</sub> est le nombre de bactéries après n heures.", q:[
+   "Donner b<sub>0</sub> et la relation de récurrence. Nature de la suite ?","Exprimer b<sub>n</sub> en fonction de n ; calculer b<sub>5</sub>.","Au bout de combien d'heures dépasse-t-on un million de bactéries ?"],
+  c:`<p>1. <span class="ans">b<sub>0</sub> = 500 et b<sub>n+1</sub> = 2b<sub>n</sub></span> : suite <b>géométrique</b> de raison 2.</p>
+  <p>2. <span class="ans">b<sub>n</sub> = 500 × 2<sup>n</sup></span> ; b<sub>5</sub> = 500 × 32 = <span class="ans">16 000</span>.</p>
+  <p>3. 500 × 2<sup>n</sup> &gt; 1 000 000 ⟺ 2<sup>n</sup> &gt; 2 000. 2<sup>10</sup> = 1 024 et 2<sup>11</sup> = 2 048 : <span class="ans">au bout de 11 heures</span>.</p>`},
+ {t:"Reconnaître et sommer", lvl:3, tags:["arithmétique","somme de Gauss"], intro:"On considère la suite 7 ; 12 ; 17 ; 22 ; … de premier terme u<sub>1</sub> = 7.", q:[
+   "Quelle semble être la nature de la suite ?","Exprimer u<sub>n</sub> en fonction de n, puis calculer u<sub>50</sub>.","Calculer u<sub>1</sub> + u<sub>2</sub> + … + u<sub>50</sub>."],
+  c:`<p>1. Différences 5, 5, 5 : <span class="ans">arithmétique de raison 5</span>.</p>
+  <p>2. (n − 1) sauts de + 5 : u<sub>n</sub> = 7 + 5(n − 1) = <span class="ans">5n + 2</span> ; <span class="ans">u<sub>50</sub> = 252</span>.</p>
+  <p>3. 50 termes : S = 50 × <span class=frac><span>7 + 252</span><span>2</span></span> = 25 × 259 = <span class="ans">6 475</span>.</p>`},
+ {t:"Lire un programme Python", lvl:2, tags:["algorithme"], intro:"def mystere(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;u = 2<br>&nbsp;&nbsp;&nbsp;&nbsp;for i in range(n):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;u = 3 * u - 1<br>&nbsp;&nbsp;&nbsp;&nbsp;return u", q:[
+   "Quelle suite ce programme calcule-t-il ?","Que renvoie mystere(3) ?"],
+  c:`<p>1. La suite définie par <span class="ans">u<sub>0</sub> = 2 et u<sub>n+1</sub> = 3u<sub>n</sub> − 1</span> ; mystere(n) renvoie u<sub>n</sub>.</p>
+  <p>2. 2 → 5 → 14 → 41 : <span class="ans">mystere(3) = 41</span>.</p>`}
+];
+
+const QUIZ2 = [
+ {q:"Si u<sub>n</sub> = 2n + 3, alors u<sub>5</sub> vaut :", o:["10","13","8","25"], a:1, e:"u<sub>5</sub> = 2 × 5 + 3 = 13."},
+ {q:"u<sub>0</sub> = 1 et u<sub>n+1</sub> = 3u<sub>n</sub>. Alors u<sub>3</sub> vaut :", o:["9","10","27","81"], a:2, e:"1 → 3 → 9 → 27."},
+ {q:"Si u<sub>n</sub> = n², alors u<sub>n+1</sub> est égal à :", o:["n² + 1","(n + 1)²","n² + n","2n²"], a:1, e:"On remplace n par (n + 1) : u<sub>n+1</sub> = (n + 1)² = n² + 2n + 1."},
+ {q:"Une suite commence à u<sub>0</sub>. Le terme u<sub>20</sub> est le :", o:["19e terme","20e terme","21e terme","22e terme"], a:2, e:"u<sub>0</sub> est le 1er terme, donc u<sub>n</sub> est le (n + 1)e."},
+ {q:"La suite 5 ; 9 ; 13 ; 17 ; … semble :", o:["arithmétique de raison 4","géométrique de raison 4","arithmétique de raison 5","ni l'une ni l'autre"], a:0, e:"On ajoute 4 à chaque fois."},
+ {q:"La suite 2 ; 6 ; 18 ; 54 ; … semble :", o:["arithmétique de raison 4","géométrique de raison 3","géométrique de raison 2","arithmétique de raison 3"], a:1, e:"On multiplie par 3 à chaque fois."},
+ {q:"u<sub>1</sub> = 10 et u<sub>n+1</sub> = u<sub>n</sub> − 3. Alors u<sub>4</sub> vaut :", o:["7","4","1","−2"], a:2, e:"10 → 7 → 4 → 1."},
+ {q:"Laquelle de ces suites est définie de façon explicite ?", o:["u<sub>n+1</sub> = u<sub>n</sub> + 5","u<sub>n</sub> = 5n − 2","u<sub>n+1</sub> = 2u<sub>n</sub>","u<sub>n+1</sub> = u<sub>n</sub>²"], a:1, e:"u<sub>n</sub> = 5n − 2 se calcule directement à partir de n."},
+ {q:"Pour représenter une suite dans un repère, on :", o:["trace une droite","place les points (n ; u<sub>n</sub>) sans les relier","relie les points","trace une parabole"], a:1, e:"n est entier : seulement des points isolés."},
+ {q:"Si u<sub>n</sub> = <span class=frac><span>n + 1</span><span>n + 2</span></span>, alors u<sub>0</sub> vaut :", o:["0","1","<span class=frac><span>1</span><span>2</span></span>","2"], a:2, e:"u<sub>0</sub> = <span class=frac><span>0 + 1</span><span>0 + 2</span></span> = <span class=frac><span>1</span><span>2</span></span>."},
+ {q:"1 + 2 + 3 + … + 100 vaut :", o:["5 000","5 050","10 100","10 000"], a:1, e:"100 × <span class=frac><span>1 + 100</span><span>2</span></span> = 5 050 (astuce de Gauss)."},
+ {q:"Une feuille de 1 mm pliée 10 fois mesure :", o:["20 mm","100 mm","512 mm","1 024 mm"], a:3, e:"v<sub>10</sub> = 2<sup>10</sup> = 1 024 mm, soit environ 1 m."}
+];
+
+const CH = {
+  ch1:{n:1, short:"Second degré", title:"Polynômes du second degré", desc:"Fonction carré, formes développée, factorisée et canonique, signe, discriminant Δ, équations bicarrées et quotients, optimisation.",
+       cours:COURS, express:EXPRESS, exos:EXOS, quiz:QUIZ, docs:DOCS},
+  ch2:{n:2, short:"Suites", title:"Suites numériques", desc:"Partie 1 : notion de suite, notations, forme explicite et récurrence, représentation graphique, on ajoute ou on multiplie.",
+       cours:COURS2, express:EXPRESS2, exos:EXOS2, quiz:QUIZ2, docs:DOCS2}
+};
+
 /* ================== RENDU ================== */
 const $ = s => document.querySelector(s);
 const view = $("#view");
 const stars = n => "★".repeat(n) + "☆".repeat(3 - n);
-function best(){ try{ const v = parseInt(localStorage.getItem("quiz-ch1-best"), 10); return v >= 0 && v <= 12 ? v : null; }catch(e){ return null; } }
+function best(id){ try{ const v = parseInt(localStorage.getItem("quiz-" + id + "-best"), 10); return v >= 0 && v <= CH[id].quiz.length ? v : null; }catch(e){ return null; } }
 
 function home(){
-  const b = best();
   view.innerHTML = `
   <section class="hero">
     <span class="eyebrow">Première spécialité mathématiques · 2026–2027</span>
@@ -353,16 +485,17 @@ function home(){
     <p>Le cours à retenir, des méthodes, des exercices corrigés pas à pas et des quiz pour vérifier qu'on a compris avant le contrôle.</p>
   </section>
   <div class="section-title"><h2>Chapitres disponibles</h2><span class="hand">à réviser !</span></div>
+  ${Object.entries(CH).map(([id, C]) => { const b = best(id); const nd = C.docs.reduce((k, g) => k + g.items.length, 0); return `
   <article class="chap-main">
-    <div class="head"><h3>Chapitre 1 · Polynômes du second degré</h3><span class="pill">Disponible</span></div>
-    <p style="margin:0;color:var(--ink-soft)">Fonction carré, formes développée, factorisée et canonique, signe, discriminant Δ, équations bicarrées et quotients, optimisation.</p>
+    <div class="head"><h3>Chapitre ${C.n} · ${C.title}</h3><span class="pill">Disponible</span></div>
+    <p style="margin:0;color:var(--ink-soft)">${C.desc}</p>
     <div class="quick">
-      <a href="#ch1"><b>Cours</b><small>9 notions + formules express</small></a>
-      <a href="#ch1-exercices"><b>Exercices</b><small>6 exercices corrigés</small></a>
-      <a href="#ch1-quiz"><b>Quiz</b><small>${b !== null ? "Meilleur score : " + b + "/12" : "12 questions"}</small></a>
-      <a href="#ch1-documents"><b>Documents</b><small>9 PDF à lire ou télécharger</small></a>
+      <a href="#${id}"><b>Cours</b><small>${C.cours.length} notions + formules express</small></a>
+      <a href="#${id}-exercices"><b>Exercices</b><small>${C.exos.length} exercices corrigés</small></a>
+      <a href="#${id}-quiz"><b>Quiz</b><small>${b !== null ? "Meilleur score : " + b + "/" + C.quiz.length : C.quiz.length + " questions"}</small></a>
+      <a href="#${id}-documents"><b>Documents</b><small>${nd} PDF à lire ou télécharger</small></a>
     </div>
-  </article>
+  </article>`; }).join("")}
   <div class="section-title"><h2>Au programme de l'année</h2></div>
   <ul class="soon-list">${UPCOMING.map(c => `<li>${c}<small>À venir</small></li>`).join("")}</ul>
   <div class="section-title"><h2>Préparer un contrôle en 4 jours</h2></div>
@@ -374,33 +507,36 @@ function home(){
   </ol>`;
 }
 
-function chapter(tab){
-  const tabs = [["ch1","Cours"],["ch1-exercices","Exercices"],["ch1-quiz","Quiz"],["ch1-documents","Documents"]];
+function chapter(id, tab){
+  const C = CH[id];
+  const tabs = [["","Cours"],["-exercices","Exercices"],["-quiz","Quiz"],["-documents","Documents"]];
   view.innerHTML = `
-  <div class="chap-head"><span class="eyebrow">Chapitre 1</span><h1>Polynômes du second degré</h1></div>
-  <nav class="tabs" aria-label="Sections du chapitre">${tabs.map(([h,l]) => `<a href="#${h}" ${h === tab ? 'aria-current="page"' : ""}>${l}</a>`).join("")}</nav>
+  <div class="chap-head"><span class="eyebrow">Chapitre ${C.n}</span><h1>${C.title}</h1></div>
+  <nav class="tabs" aria-label="Sections du chapitre">${tabs.map(([h,l]) => `<a href="#${id}${h}" ${h === tab ? 'aria-current="page"' : ""}>${l}</a>`).join("")}</nav>
   <div id="tab"></div>`;
   const el = $("#tab");
-  if (tab === "ch1") renderCours(el);
-  else if (tab === "ch1-exercices") renderExos(el);
-  else if (tab === "ch1-quiz") renderQuiz(el);
-  else renderDocs(el);
+  if (tab === "") renderCours(el, id);
+  else if (tab === "-exercices") renderExos(el, id);
+  else if (tab === "-quiz") renderQuiz(el, id);
+  else renderDocs(el, id);
 }
 
-function renderCours(el){
+function renderCours(el, id){
+  const C = CH[id];
   el.innerHTML = `
   <section class="block"><h2><span class="n">★</span>Formules express à savoir par cœur</h2>
-    <div class="express">${EXPRESS.map(([f,l]) => `<div><span class="m">${f}</span><small>${l}</small></div>`).join("")}</div></section>
-  <nav class="toc" aria-label="Notions">${COURS.map(c => `<a href="#ch1" data-go="${c.id}">${c.t}</a>`).join("")}</nav>
-  ${COURS.map((c,i) => `<section class="block" id="n-${c.id}"><h2><span class="n">${i + 1}</span>${c.t}</h2>${c.h}</section>`).join("")}`;
+    <div class="express">${C.express.map(([f,l]) => `<div><span class="m">${f}</span><small>${l}</small></div>`).join("")}</div></section>
+  <nav class="toc" aria-label="Notions">${C.cours.map(c => `<a href="#${id}" data-go="${c.id}">${c.t}</a>`).join("")}</nav>
+  ${C.cours.map((c,i) => `<section class="block" id="n-${c.id}"><h2><span class="n">${i + 1}</span>${c.t}</h2>${c.h}</section>`).join("")}`;
   el.querySelectorAll("[data-go]").forEach(a => a.addEventListener("click", e => {
     e.preventDefault(); document.getElementById("n-" + a.dataset.go).scrollIntoView({behavior:"smooth", block:"start"});
   }));
 }
 
-function renderExos(el){
-  el.innerHTML = `<p style="margin-top:0;color:var(--ink-soft)">Cherche chaque exercice sur une feuille avant d'ouvrir la correction. Le sujet complet et son corrigé rédigé sont aussi dans <a href="#ch1-documents">Documents</a>.</p>` +
-  EXOS.map((x,i) => `<section class="block">
+function renderExos(el, id){
+  const C = CH[id];
+  el.innerHTML = `<p style="margin-top:0;color:var(--ink-soft)">Cherche chaque exercice sur une feuille avant d'ouvrir la correction. Les documents PDF du chapitre sont dans <a href="#${id}-documents">Documents</a>.</p>` +
+  C.exos.map((x,i) => `<section class="block">
     <div class="exo-head"><h2><span class="n">${i + 1}</span>${x.t}</h2><span class="stars" aria-label="Difficulté ${x.lvl} sur 3">${stars(x.lvl)}</span></div>
     <div class="tags">${x.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
     ${x.intro ? `<p class="m" style="white-space:normal">${x.intro}</p>` : ""}
@@ -409,25 +545,27 @@ function renderExos(el){
   </section>`).join("");
 }
 
-let qs = {i:0, score:0, done:false};
-function renderQuiz(el){
+const qsAll = {};
+function renderQuiz(el, id){
+  const C = CH[id], QZ = C.quiz, N = QZ.length;
+  const qs = qsAll[id] || (qsAll[id] = {i:0, score:0, done:false});
   if (qs.done){
-    const prev = Number(best() || 0);
-    if (qs.score > prev){ try{ localStorage.setItem("quiz-ch1-best", qs.score); }catch(e){} }
-    const msg = qs.score >= 10 ? "Excellent, tu es prêt pour le contrôle." : qs.score >= 7 ? "Bien. Relis les notions des questions ratées." : "Reprends le cours et refais le quiz.";
-    el.innerHTML = `<section class="block" style="text-align:center"><p class="eyebrow">Résultat</p><div class="score">${qs.score}/12</div><p>${msg}</p>
-      <p style="color:var(--ink-soft)">Meilleur score : ${Math.max(prev, qs.score)}/12</p>
-      <button class="btn" id="restart" type="button">Recommencer</button> <a class="btn ghost" href="#ch1" style="text-decoration:none;display:inline-block">Revoir le cours</a></section>`;
-    $("#restart").onclick = () => { qs = {i:0, score:0, done:false}; renderQuiz(el); };
+    const prev = Number(best(id) || 0);
+    if (qs.score > prev){ try{ localStorage.setItem("quiz-" + id + "-best", qs.score); }catch(e){} }
+    const msg = qs.score >= N - 2 ? "Excellent, tu es prêt pour le contrôle." : qs.score >= N - 5 ? "Bien. Relis les notions des questions ratées." : "Reprends le cours et refais le quiz.";
+    el.innerHTML = `<section class="block" style="text-align:center"><p class="eyebrow">Résultat</p><div class="score">${qs.score}/${N}</div><p>${msg}</p>
+      <p style="color:var(--ink-soft)">Meilleur score : ${Math.max(prev, qs.score)}/${N}</p>
+      <button class="btn" id="restart" type="button">Recommencer</button> <a class="btn ghost" href="#${id}" style="text-decoration:none;display:inline-block">Revoir le cours</a></section>`;
+    $("#restart").onclick = () => { qsAll[id] = {i:0, score:0, done:false}; renderQuiz(el, id); };
     return;
   }
-  const Q = QUIZ[qs.i];
+  const Q = QZ[qs.i];
   el.innerHTML = `<section class="block">
-    <div class="quiz-top"><b>Question ${qs.i + 1} / ${QUIZ.length}</b><div class="bar" aria-hidden="true"><i style="width:${qs.i / QUIZ.length * 100}%"></i></div><span>Score : ${qs.score}</span></div>
+    <div class="quiz-top"><b>Question ${qs.i + 1} / ${N}</b><div class="bar" aria-hidden="true"><i style="width:${qs.i / N * 100}%"></i></div><span>Score : ${qs.score}</span></div>
     <h2 style="font-family:var(--f-body);font-size:1.15rem">${Q.q}</h2>
     <div class="opts">${Q.o.map((o,k) => `<button type="button" data-k="${k}" class="m" style="white-space:normal">${o}</button>`).join("")}</div>
     <div id="fb"></div>
-    <div style="display:flex;justify-content:flex-end"><button class="btn" id="next" type="button" disabled>${qs.i === QUIZ.length - 1 ? "Voir mon score" : "Question suivante"}</button></div>
+    <div style="display:flex;justify-content:flex-end"><button class="btn" id="next" type="button" disabled>${qs.i === N - 1 ? "Voir mon score" : "Question suivante"}</button></div>
   </section>`;
   el.querySelectorAll(".opts button").forEach(btn => btn.onclick = () => {
     const k = Number(btn.dataset.k), ok = k === Q.a;
@@ -437,12 +575,12 @@ function renderQuiz(el){
     $("#fb").innerHTML = `<div class="fb ${ok ? "ex" : "trap"}"><b>${ok ? "Bonne réponse" : "Pas tout à fait"}</b> ${Q.e}</div>`;
     const n = $("#next"); n.disabled = false; n.focus();
   });
-  $("#next").onclick = () => { qs.i++; if (qs.i >= QUIZ.length) qs.done = true; renderQuiz(el); };
+  $("#next").onclick = () => { qs.i++; if (qs.i >= N) qs.done = true; renderQuiz(el, id); };
 }
 
 let downloads = null;
-function renderDocs(el){
-  el.innerHTML = DOCS.map(g => `<h3 class="doc-group">${g.group}</h3><div class="docs">${g.items.map(d => `
+function renderDocs(el, id){
+  el.innerHTML = CH[id].docs.map(g => `<h3 class="doc-group">${g.group}</h3><div class="docs">${g.items.map(d => `
     <article class="doc"><img src="pages/${d.id}-1.jpg" alt="Première page : ${d.title}" loading="lazy">
       <div><h3>${d.title}</h3><p>${d.desc} · ${d.pages} p.</p>
         <div class="act"><button class="btn" type="button" data-read="${d.id}">Lire</button>
@@ -451,7 +589,7 @@ function renderDocs(el){
   el.querySelectorAll("[data-read]").forEach(b => b.onclick = () => openReader(b.dataset.read));
   el.querySelectorAll("[data-dl]").forEach(b => b.onclick = () => download(b.dataset.dl));
 }
-const allDocs = () => DOCS.flatMap(g => g.items);
+const allDocs = () => Object.values(CH).flatMap(C => C.docs.flatMap(g => g.items));
 function openReader(id){
   const d = allDocs().find(x => x.id === id);
   $("#reader-title").textContent = d.title;
@@ -478,7 +616,8 @@ function route(){
   closeReader();
   document.querySelectorAll("nav.top a").forEach(a => a.toggleAttribute("aria-current", h.startsWith(a.dataset.nav) && (a.dataset.nav !== "accueil" || h === "accueil")));
   document.querySelectorAll('nav.top a[aria-current]').forEach(a => a.setAttribute("aria-current","page"));
-  if (h.startsWith("ch1")) chapter(["ch1","ch1-exercices","ch1-quiz","ch1-documents"].includes(h) ? h : "ch1");
+  const m = /^(ch\d+)(-exercices|-quiz|-documents)?$/.exec(h);
+  if (m && Object.prototype.hasOwnProperty.call(CH, m[1])) chapter(m[1], m[2] || "");
   else home();
   window.scrollTo(0, 0);
 }
