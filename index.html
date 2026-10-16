@@ -101,6 +101,8 @@ main{padding-block:28px 60px}
 .tabs a[aria-current="page"]{color:var(--accent);background:var(--card);border-color:var(--rule);border-bottom-color:var(--card)}
 .block{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px;min-width:0}
 .block h2{font-size:1.25rem;margin-bottom:8px;display:flex;gap:10px;align-items:baseline}
+.block h2.qq{display:block;font-family:var(--f-body);font-size:1.15rem;line-height:1.5}
+.qq sub,.fb sub{font-size:.75em}
 .block h2 .n{font-family:var(--f-hand);color:var(--margin);font-size:1.5rem}
 .block p{margin:.4em 0}
 .prop,.meth,.trap,.ex{border-radius:8px;padding:10px 14px;margin:10px 0}
@@ -562,7 +564,7 @@ function renderQuiz(el, id){
   const Q = QZ[qs.i];
   el.innerHTML = `<section class="block">
     <div class="quiz-top"><b>Question ${qs.i + 1} / ${N}</b><div class="bar" aria-hidden="true"><i style="width:${qs.i / N * 100}%"></i></div><span>Score : ${qs.score}</span></div>
-    <h2 style="font-family:var(--f-body);font-size:1.15rem">${Q.q}</h2>
+    <h2 class="qq">${Q.q}</h2>
     <div class="opts">${Q.o.map((o,k) => `<button type="button" data-k="${k}" class="m" style="white-space:normal">${o}</button>`).join("")}</div>
     <div id="fb"></div>
     <div style="display:flex;justify-content:flex-end"><button class="btn" id="next" type="button" disabled>${qs.i === N - 1 ? "Voir mon score" : "Question suivante"}</button></div>
